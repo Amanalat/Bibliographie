@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interventions — Antonin Atger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f4ef;
+    --surface: #ffffff;
+    --ink: #1a1510;
+    --ink-soft: #5a5248;
+    --accent: #c0392b;
+    --accent-light: #f9ece9;
+    --border: #e2ddd7;
+    --tag-bg: #efe9e0;
+    --tag-ink: #5a5248;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    padding: 0 0 60px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    padding: 52px 24px 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .page-header .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .page-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .page-header p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  /* ── Cards ── */
+  .cards {
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px;
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    margin-bottom: -1px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .card:first-child { border-radius: 10px 10px 0 0; }
+  .card:last-of-type  { border-radius: 0 0 10px 10px; margin-bottom: 0; }
+  .card.open { border-color: var(--accent); z-index: 1; position: relative; }
+
+  /* ── Card header ── */
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 26px;
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s;
+  }
+  .card-header:hover { background: #faf8f5; }
+  .card.open .card-header { background: var(--accent-light); }
+
+  .card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--border);
+    line-height: 1;
+    min-width: 36px;
+    transition: color .2s;
+    flex-shrink: 0;
+  }
+  .card.open .card-num { color: var(--accent); }
+
+  .card-headline { flex: 1; }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .card-subtitle {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+
+  .card-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-ink);
+    font-size: 10.5px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .tag.accent { background: var(--accent); color: #fff; }
+
+  .card-chevron {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    transition: transform .3s, color .2s;
+  }
+  .card.open .card-chevron { transform: rotate(180deg); color: var(--accent); }
+
+  /* ── Card body ── */
+  .card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .55s cubic-bezier(.4,0,.2,1);
+  }
+  .card.open .card-body { max-height: 2400px; }
+
+  .card-inner {
+    padding: 0 26px 28px 82px;
+    border-top: 1px solid #f0ded9;
+  }
+
+  .card-description {
+    padding-top: 20px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+  .card-description strong { color: var(--ink); font-weight: 500; }
+
+  .programme-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .programme-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 26px;
+  }
+  .programme-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .programme-list li::before {
+    content: '→';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-size: 12px;
+    margin-top: 1px;
+  }
+
+  /* ── Video embed ── */
+  .video-block {
+    margin-bottom: 24px;
+  }
+  .video-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #111;
+    margin-bottom: 10px;
+  }
+  .video-wrapper + .video-wrapper { margin-top: 10px; }
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .video-caption {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 5px;
+    margin-bottom: 14px;
+  }
+
+  /* ── CTA ── */
+  .cta-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    padding: 11px 24px;
+    border-radius: 6px;
+    transition: background .15s, transform .15s;
+  }
+  .cta-btn:hover { background: #a82d22; transform: translateY(-1px); }
+
+  /* ── Footer ── */
+  .footer-info {
+    margin: 40px 24px 0;
+    padding: 28px 30px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+  }
+  .footer-info .fi-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .footer-info p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .footer-info p:last-child { margin-bottom: 0; }
+  .footer-info a { color: var(--accent); text-decoration: none; }
+  .footer-info a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .card-tags { display: none; }
+    .card-inner { padding-left: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="eyebrow">Antonin Atger · Conférences &amp; Ateliers</div>
+  <h1>Interventions</h1>
+  <p>Depuis plusieurs années, j'interviens dans les établissements scolaires et les médiathèques autour de thématiques d'esprit critique, de désinformation, d'écriture et de rhétorique. Cliquez sur une intervention pour en découvrir le détail.</p>
+</header>
+
+<div class="cards">
+
+  <!-- 1 -->
+  <div class="card" id="c1">
+    <div class="card-header" onclick="toggle('c1')">
+      <div class="card-num">01</div>
+      <div class="card-headline">
+        <div class="card-title">Fake News et Esprit Critique</div>
+        <div class="card-subtitle">Comprendre les mécanismes du cerveau pour mieux résister à la désinformation</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">1 h – 2 h</span>
+        <span class="tag">Collège · Lycée · Médiathèque</span>
+      </div>
+      <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="card-body"><div class="card-inner">
+      <p class="card-description">Pourquoi les Fake News nous séduisent-elles autant ? En m'appuyant sur mes recherches en <strong>sciences cognitives</strong>, j'explique comment notre cerveau — pourtant remarquable — est aussi faillible. À travers des illusions d'optique et des exemples concrets, je montre pourquoi les fausses informations circulent plus vite et plus loin que les vraies, et comment nous pouvons développer des réflexes pour les identifier.</p>
+      <div class="programme-label">Au programme</div>
+      <ul class="programme-list">
+        <li>Illusions d'optique et biais de pensée pour illustrer nos angles morts cognitifs</li>
+        <li>Comment fonctionne le cerveau : biais cognitifs et heuristiques</li>
+        <li>Exemples de Fake News et analyse de leur attractivité</li>
+        <li>L'impact des fausses informations sur les réseaux sociaux et la réalité</li>
+        <li>Outils concrets pour vérifier une information en ligne</li>
+      </ul>
+      <div class="video-block">
+        <div class="video-label">Présentation de la conférence</div>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/vUlKdtYcJPs?si=DumYQFPua7nUXtTJ" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+      <a href="https://antoninatger.com/contact/" class="cta-btn" target="_blank" rel="noopener">Je veux en savoir plus →</a>
+    </div></div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card" id="c2">
+    <div class="card-header" onclick="toggle('c2')">
+      <div class="card-num">02</div>
+      <div class="card-headline">
+        <div class="card-title">Désinformation : au-delà de la Fake News</div>
+        <div class="card-subtitle">Manipuler sans mentir — les techniques invisibles de l'infox</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">1 h – 2 h</span>
+        <span class="tag">Lycée · Enseignement supérieur</span>
+      </div>
+      <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="card-body"><div class="card-inner">
+      <p class="card-description">Suite naturelle à la première intervention, cette conférence va plus loin : les Fake News ne représentent qu'une petite partie du phénomène de désinformation. <strong>Il est possible de manipuler l'information sans jamais mentir frontalement</strong> — en cadrant, hiérarchisant, ou sortant des faits vrais de leur contexte. Je présente les techniques les plus utilisées et les biais qui les rendent efficaces.</p>
+      <div class="programme-label">Au programme</div>
+      <ul class="programme-list">
+        <li>Exemples de manipulation de l'information sans mensonge</li>
+        <li>Biais de cadrage, biais de causalité, biais d'autorité</li>
+        <li>Limites du fact-checking et du concept de « Fake News »</li>
+        <li>Techniques clés : <strong>Astroturfing</strong>, <strong>Agnotologie</strong> (fabrique du doute), <strong>Mute News</strong></li>
+        <li>Analyse d'exemples issus des médias et des réseaux sociaux</li>
+        <li>Méthodes pour identifier les sophismes et renforcer son esprit critique</li>
+      </ul>
+      <div class="video-block">
+        <div class="video-label">Présentation de la conférence</div>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/HLEhkhCJCyw?si=yzoTsgwc8n53WlJ3" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+      <a href="https://antoninatger.com/contact/" class="cta-btn" target="_blank" rel="noopener">Je veux en savoir plus →</a>
+    </div></div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card" id="c3">
+    <div class="card-header" onclick="toggle('c3')">
+      <div class="card-num">03</div>
+      <div class="card-headline">
+        <div class="card-title">Le piège des influenceurs</div>
+        <div class="card-subtitle">Fake News, influence et esprit critique à l'ère des réseaux sociaux</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">1 h – 2 h</span>
+        <span class="tag">Collège · Lycée</span>
+      </div>
+      <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="card-body"><div class="card-inner">
+      <p class="card-description">Les influenceurs occupent une place centrale dans l'univers médiatique des jeunes. Mais pourquoi leur parole est-elle si persuasive ? Cette intervention analyse les <strong>mécanismes cognitifs, émotionnels et sociaux</strong> qui nous rendent perméables à leur influence — sans diaboliser les créateurs de contenu, mais en donnant les clés pour regarder leurs contenus avec recul.</p>
+      <div class="programme-label">Au programme</div>
+      <ul class="programme-list">
+        <li>Sommes-nous vraiment influençables ? Démonstration par l'exemple</li>
+        <li>Qu'est-ce qu'un influenceur ? Les différents types d'influence</li>
+        <li>Biais cognitifs à l'œuvre : halo, confirmation, engagement, popularité</li>
+        <li>La relation parasociale : l'illusion de proximité avec un créateur de contenu</li>
+        <li>Comment les influenceurs cadrent leurs contenus (storytelling, mise en scène de la réussite)</li>
+        <li>Contenus sponsorisés, arnaques et influence commerciale — exemples concrets</li>
+        <li>Outils pour analyser les contenus et identifier les intérêts en jeu</li>
+      </ul>
+      <a href="https://antoninatger.com/contact/" class="cta-btn" target="_blank" rel="noopener">Je veux en savoir plus →</a>
+    </div></div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card" id="c4">
+    <div class="card-header" onclick="toggle('c4')">
+      <div class="card-num">04</div>
+      <div class="card-headline">
+        <div class="card-title">Déjouer les pièges de la rhétorique</div>
+        <div class="card-subtitle">Éthos, Pathos, Logos — convaincre sans tromper</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">1 h – 2 h</span>
+        <span class="tag">Collège · Lycée · Adultes</span>
+      </div>
+      <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="card-body"><div class="card-inner">
+      <p class="card-description">Si les mots sont une arme, la rhétorique est l'art de s'en servir. Indispensable pour convaincre, elle peut aussi servir à manipuler — souvent sans que l'on s'en rende compte. Cette formation très interactive permet de <strong>comprendre et pratiquer les techniques de persuasion</strong>, d'identifier les raisonnements fallacieux, et d'apprendre à débattre honnêtement.</p>
+      <div class="programme-label">Au programme</div>
+      <ul class="programme-list">
+        <li>Les différents types de rhétorique et leurs usages</li>
+        <li>Les trois piliers : Éthos (crédibilité), Pathos (émotion), Logos (logique)</li>
+        <li>Mise en pratique en groupes : convaincre ses camarades avec les techniques apprises</li>
+        <li>Les raisonnements fallacieux les plus courants — et comment les déjouer</li>
+        <li>Techniques pour débattre sereinement et s'enrichir mutuellement</li>
+      </ul>
+      <div class="video-block">
+        <div class="video-label">Présentation de la conférence</div>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/vUlKdtYcJPs?si=8Ps7Ol66yyH8JtpA" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+      <a href="https://antoninatger.com/contact/" class="cta-btn" target="_blank" rel="noopener">Je veux en savoir plus →</a>
+    </div></div>
+  </div>
+
+  <!-- 5 -->
+  <div class="card" id="c5">
+    <div class="card-header" onclick="toggle('c5')">
+      <div class="card-num">05</div>
+      <div class="card-headline">
+        <div class="card-title">La magie des histoires</div>
+        <div class="card-subtitle">Comprendre ce qui rend une œuvre inoubliable</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">1 h – 2 h</span>
+        <span class="tag">Collège · Lycée · Médiathèque</span>
+      </div>
+      <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="card-body"><div class="card-inner">
+      <p class="card-description">Pourquoi reste-t-on happé à la fin d'un épisode ? Pourquoi certaines histoires nous font-elles pleurer alors que rien n'est réel ? Les créateurs sont des magiciens — et comme les illusionnistes, ils possèdent des astuces. Cette intervention très <strong>interactive</strong> décortique avec le public ses œuvres préférées pour révéler les mécanismes narratifs à l'œuvre.</p>
+      <div class="programme-label">Au programme</div>
+      <ul class="programme-list">
+        <li>Le cycle du héros : la structure commune à (presque) toutes les histoires</li>
+        <li>Analyse interactive des œuvres préférées du public — séries, mangas, romans…</li>
+        <li>Les ficelles de l'écriture pour rendre une histoire crédible et des personnages réalistes</li>
+        <li>Le métier d'écrivain : cycle du livre, relations avec l'éditeur, les libraires</li>
+        <li>Questions-réponses autour de l'écriture</li>
+      </ul>
+      <a href="https://antoninatger.com/contact/" class="cta-btn" target="_blank" rel="noopener">Je veux en savoir plus →</a>
+    </div></div>
+  </div>
+
+  <!-- 6 -->
+  <div class="card" id="c6">
+    <div class="card-header" onclick="toggle('c6')">
+      <div class="card-num">06</div>
+      <div class="card-headline">
+        <div class="card-title">Ateliers d'écriture heureux</div>
+        <div class="card-subtitle">Décomplexer, créer, raconter — écrire sans peur de la page blanche</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">1 h – 2 h</span>
+        <span class="tag">Tous niveaux</span>
+      </div>
+      <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="card-body"><div class="card-inner">
+      <p class="card-description">Un français sur trois rêve d'écrire un livre. Presque personne ne se lance. Raison ? On nous a appris que l'écriture est une souffrance réservée aux « talents ». C'est faux. Cet atelier propose une <strong>méthode simple et bienveillante</strong> pour que chacun, quel que soit son niveau, puisse créer son histoire — et surtout prendre plaisir à écrire.</p>
+      <div class="programme-label">Au programme</div>
+      <ul class="programme-list">
+        <li>Exercice de décomplexage : écrire un texte avec le plus de fautes possible !</li>
+        <li>Comment poser les bases d'une histoire cohérente en partant d'une question simple</li>
+        <li>Construire une intrigue captivante et des personnages profonds</li>
+        <li>Créer un univers crédible et intéressant</li>
+        <li>Mise en pratique : chacun pose les fondations de <em>son</em> histoire</li>
+      </ul>
+      <a href="https://antoninatger.com/contact/" class="cta-btn" target="_blank" rel="noopener">Je veux en savoir plus →</a>
+    </div></div>
+  </div>
+
+  <!-- 7 -->
+  <div class="card" id="c7">
+    <div class="card-header" onclick="toggle('c7')">
+      <div class="card-num" style="font-size:1.4rem">✦</div>
+      <div class="card-headline">
+        <div class="card-title">Formation enseignants : l'esprit critique en classe</div>
+        <div class="card-subtitle">Une formation conçue pour le personnel enseignant et encadrant</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag accent">Gratuit · En ligne</span>
+        <span class="tag">Enseignants · CPE · Formateurs</span>
+      </div>
+      <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="card-body"><div class="card-inner">
+      <p class="card-description">Les professeurs sont de plus en plus sollicités pour enseigner l'esprit critique — mais sont-ils eux-mêmes formés à cet enseignement ? Sur la base de mes recherches en psychologie et de mes propres interventions, j'ai conçu une <strong>formation gratuite, disponible en ligne</strong>, à destination des enseignants et du personnel encadrant.</p>
+      <div class="programme-label">Contenu de la formation</div>
+      <ul class="programme-list">
+        <li>Comment identifier la véracité d'une information en ligne</li>
+        <li>Quels outils d'esprit critique solliciter pour évaluer la pertinence d'un fait</li>
+        <li>Pourquoi il est parfois difficile de transmettre un contenu à une classe — et comment y remédier</li>
+        <li>Mise en pratique à partir d'un échange réel avec un élève</li>
+      </ul>
+      <div class="video-block">
+        <div class="video-label">Formation complète</div>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/DgjadOfdhmI" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+      <a href="https://antoninatger.com/contact/" class="cta-btn" target="_blank" rel="noopener">Je veux en savoir plus →</a>
+    </div></div>
+  </div>
+
+  <!-- 8 : enregistrement médiathèque -->
+  <div class="card" id="c8">
+    <div class="card-header" onclick="toggle('c8')">
+      <div class="card-num" style="font-size:1.4rem">✦</div>
+      <div class="card-headline">
+        <div class="card-title">Conférence complète — médiathèque Simone Veil</div>
+        <div class="card-subtitle">Enregistrement intégral d'une intervention Fake News et Esprit Critique</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag accent">Gratuit · En ligne</span>
+        <span class="tag">Tout public</span>
+      </div>
+      <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="card-body"><div class="card-inner">
+      <p class="card-description">Envie de voir à quoi ressemble une intervention en conditions réelles ? Voici l'enregistrement complet d'une conférence <strong>Fake News et Esprit Critique</strong> donnée à la médiathèque Simone Veil de Jassans-Riottier — disponible gratuitement en ligne.</p>
+      <div class="video-block">
+        <div class="video-label">Enregistrement complet</div>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/KGdrXPr2ONQ" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+      <a href="https://antoninatger.com/contact/" class="cta-btn" target="_blank" rel="noopener">Je veux en savoir plus →</a>
+    </div></div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer-info">
+  <div class="fi-title">Informations pratiques</div>
+  <p><strong>Durée</strong> — Chaque intervention dure entre 1 heure et 2 heures, et peut être adaptée à vos contraintes de programmation.</p>
+  <p><strong>Publics</strong> — Ces interventions s'adressent aux élèves de CM1 au lycée, ainsi qu'aux adultes en médiathèque ou en formation. Des adaptations sont possibles selon l'âge et le contexte.</p>
+  <p><strong>Tarifs</strong> — Les interventions en établissement scolaire et en médiathèque sont facturées au tarif de <a href="http://la-charte.fr/le-metier/rencontres/article/la-remuneration-des-rencontres-et" target="_blank" rel="noopener">la Charte des auteurs</a>. Des formats personnalisés sont possibles — n'hésitez pas à en discuter.</p>
+  <p><strong>Contact</strong> — Pour toute demande : <a href="https://antoninatger.com/contact/" target="_blank" rel="noopener">antoninatger.com/contact</a> ou <strong>contact(at)antoninatger.com</strong>.</p>
+</div>
+
+<script>
+  function toggle(id) {
+    const card = document.getElementById(id);
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.card.open').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
