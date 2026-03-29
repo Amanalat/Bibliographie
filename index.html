@@ -768,6 +768,7 @@ a:hover { text-decoration: underline; }
     <img id="lb-img" src="" alt="">
     <p id="lb-caption"></p>
     <p id="lb-counter"></p>
+    <button id="lb-close-bottom">✕ Fermer</button>
   </div>
 </div>
 
@@ -833,17 +834,38 @@ a:hover { text-decoration: underline; }
   position: fixed;
   top: 18px;
   right: 22px;
-  background: none;
-  border: none;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
   color: #fff;
-  font-size: 26px;
+  font-size: 20px;
   cursor: pointer;
-  line-height: 1;
-  opacity: .7;
-  transition: opacity .2s;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .9;
+  transition: opacity .2s, background .2s;
   font-family: sans-serif;
 }
-#lb-close:hover { opacity: 1; }
+#lb-close:hover { opacity: 1; background: rgba(255,255,255,0.25); }
+
+#lb-close-bottom {
+  margin-top: 18px;
+  padding: 10px 28px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  font-family: 'Source Sans 3', Georgia, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s;
+}
+#lb-close-bottom:hover { background: rgba(255,255,255,0.2); }
 
 #lb-prev, #lb-next {
   position: fixed;
@@ -909,6 +931,7 @@ a:hover { text-decoration: underline; }
   const btnPrev = document.getElementById('lb-prev');
   const btnNext = document.getElementById('lb-next');
   const btnClose = document.getElementById('lb-close');
+  const btnCloseBottom = document.getElementById('lb-close-bottom');
 
   let currentGroup = null;
   let currentIndex = 0;
@@ -944,6 +967,7 @@ a:hover { text-decoration: underline; }
   }
 
   btnClose.addEventListener('click', close);
+  btnCloseBottom.addEventListener('click', close);
   overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
 
   btnPrev.addEventListener('click', function(e) {
