@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publications — Antonin Atger</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Sans 3', Georgia, sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #222;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: #b5341c; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Layout wrapper ── */
+.page-wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Page header ── */
+.page-header {
+  border-bottom: 3px solid #222;
+  padding: 48px 0 28px;
+  margin-bottom: 56px;
+}
+
+.page-header .eyebrow {
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #b5341c;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.page-header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: #111;
+  line-height: 1.1;
+}
+
+/* ── Section divider ── */
+.section-break {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 64px 0 40px;
+}
+
+.section-break span {
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #999;
+  white-space: nowrap;
+}
+
+.section-break::before, .section-break::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #ddd;
+}
+
+/* ── Interfeel hero block ── */
+.interfeel-hero {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 520px) {
+  .interfeel-hero { grid-template-columns: 1fr; }
+  .interfeel-hero .cover { max-width: 140px; }
+}
+
+.interfeel-hero .cover img {
+  width: 100%;
+  display: block;
+  box-shadow: 0 4px 24px rgba(0,0,0,.16);
+}
+
+.interfeel-hero .meta .eyebrow {
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #999;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.interfeel-hero .meta h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  font-style: italic;
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.interfeel-hero .meta .publisher {
+  font-size: 13px;
+  color: #888;
+  letter-spacing: .05em;
+  margin-bottom: 20px;
+}
+
+.interfeel-hero .meta p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.75;
+}
+
+.interfeel-hero .meta p + p { margin-top: 12px; }
+
+.btn-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 9px 20px;
+  background: #111;
+  color: #fff !important;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+}
+
+.btn-link:hover { background: #b5341c; }
+
+/* ── Prix ── */
+.prix-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.prix-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #111;
+  color: #fff;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.subsection-h {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #111;
+  margin: 40px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* ── Two-col video ── */
+.video-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 520px) { .video-pair { grid-template-columns: 1fr; } }
+
+.video-box { aspect-ratio: 16/9; background: #111; }
+.video-box iframe { width: 100%; height: 100%; border: none; display: block; }
+.video-caption { font-size: 12px; color: #888; letter-spacing: .06em; }
+
+/* ── Press strip ── */
+.press-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  .press-strip { grid-template-columns: repeat(3, 1fr); }
+}
+
+.press-strip figure {
+  overflow: hidden;
+  border: 1px solid #e8e8e8;
+  background: #fafafa;
+}
+
+.press-strip figure img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform .3s ease;
+}
+
+.press-strip figure:hover img { transform: scale(1.04); }
+
+.press-strip figcaption {
+  padding: 5px 7px;
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  border-top: 1px solid #e8e8e8;
+}
+
+/* ── Libraires: featured 3 + scrollable rest ── */
+.lib-featured {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 520px) {
+  .lib-featured { grid-template-columns: repeat(2, 1fr); }
+}
+
+.lib-featured figure {
+  border: 1px solid #e8e8e8;
+  background: #fafafa;
+  overflow: hidden;
+}
+
+.lib-featured figure img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+  transition: transform .3s ease;
+}
+
+.lib-featured figure:hover img { transform: scale(1.04); }
+
+.lib-featured figcaption {
+  padding: 7px 9px;
+  font-size: 11px;
+  color: #666;
+  letter-spacing: .05em;
+  border-top: 1px solid #e8e8e8;
+  line-height: 1.4;
+}
+
+/* Scrollable strip for remaining lib photos */
+.lib-scroll-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 8px;
+}
+
+.lib-scroll {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  padding-bottom: 4px;
+}
+
+.lib-scroll figure {
+  width: 160px;
+  flex-shrink: 0;
+  border: 1px solid #e8e8e8;
+  background: #fafafa;
+  overflow: hidden;
+}
+
+.lib-scroll figure img {
+  width: 160px;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.lib-scroll figcaption {
+  padding: 5px 7px;
+  font-size: 10px;
+  color: #888;
+  letter-spacing: .06em;
+  border-top: 1px solid #e8e8e8;
+  line-height: 1.35;
+}
+
+.scroll-hint {
+  font-size: 11px;
+  color: #aaa;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* ── Video solo ── */
+.video-solo { max-width: 480px; margin-bottom: 8px; }
+
+/* ── 3-col video grid ── */
+.video-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 520px) { .video-trio { grid-template-columns: 1fr; } }
+
+/* ── Bloggers ── */
+.bloggers-intro {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.bloggers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  border: 1px solid #e8e8e8;
+}
+
+@media (max-width: 520px) { .bloggers-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.bloggers-grid a {
+  display: block;
+  padding: 9px 12px;
+  font-size: 13px;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #eee;
+  background: #fafafa;
+  transition: background .2s, color .2s;
+  line-height: 1.3;
+}
+
+.bloggers-grid a:hover {
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ── Reader photo ── */
+.reader-photo {
+  margin-top: 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.reader-photo img {
+  width: 180px;
+  flex-shrink: 0;
+  display: block;
+  box-shadow: 0 3px 16px rgba(0,0,0,.12);
+}
+
+.reader-photo .caption-text {
+  font-size: 15px;
+  color: #555;
+  font-style: italic;
+  line-height: 1.7;
+  padding-top: 8px;
+}
+
+@media (max-width: 520px) {
+  .reader-photo { flex-direction: column; }
+  .reader-photo img { width: 130px; }
+}
+
+/* ── Timeline (other publications) ── */
+.timeline-section {
+  background: #f7f5f1;
+  padding: 56px 0;
+  margin-top: 72px;
+}
+
+.timeline-section .page-wrap {}
+
+.timeline-header {
+  margin-bottom: 48px;
+}
+
+.timeline-header .eyebrow {
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #b5341c;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.timeline-header h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 72px;
+  border-left: 2px solid #d0cbc3;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 44px;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+/* Year bubble */
+.timeline-item::before {
+  content: attr(data-year);
+  position: absolute;
+  left: -90px;
+  top: 2px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+  color: #888;
+  width: 60px;
+  text-align: right;
+}
+
+/* Dot */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 7px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border: 2px solid #b5341c;
+  border-radius: 50%;
+}
+
+.timeline-item h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+
+.timeline-item .type-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 10px;
+  background: #e8e4dc;
+  padding: 3px 8px;
+}
+
+.timeline-item p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+.timeline-item p + p { margin-top: 10px; }
+
+.timeline-item .t-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #b5341c;
+  text-decoration: none;
+}
+
+.timeline-item .t-link:hover { text-decoration: underline; }
+
+.timeline-photo {
+  margin-top: 14px;
+  max-width: 340px;
+}
+
+.timeline-photo img {
+  width: 100%;
+  display: block;
+  box-shadow: 0 3px 18px rgba(0,0,0,.14);
+}
+
+@media (max-width: 600px) {
+  .timeline { padding-left: 48px; }
+  .timeline-item::before { left: -66px; font-size: 11px; width: 46px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- ── En-tête ── -->
+  <header class="page-header">
+    <span class="eyebrow">Antonin Atger</span>
+    <h1>Publications</h1>
+  </header>
+
+  <!-- ══════════ INTERFEEL ══════════ -->
+
+  <!-- Livre : présentation -->
+  <div class="interfeel-hero">
+    <div class="cover">
+      <img src="https://antoninatger.com/wp-content/uploads/2018/12/couv_interfeel_rc3a9duite.jpg" alt="Couverture Interfeel">
+    </div>
+    <div class="meta">
+      <span class="eyebrow">Roman d'anticipation · 2018</span>
+      <h2>Interfeel</h2>
+      <p class="publisher">Éditions Pocket Jeunesse · Sorti le 7 juin 2018</p>
+      <p>Nathan et ses amis sont en permanence connectés à Interfeel, un réseau social qui permet de partager ses émotions. Mais un événement tragique va bouleverser Nathan. Fasciné par Élizabeth, une « sans-Réseau » qui vit en marge de la société, il voit toutes ses certitudes vaciller. Ce que les deux adolescents découvriront pourrait bien changer le monde à jamais…</p>
+      <p>Né d'un concours <em>Welovewords</em> remporté en 2012, deux ans d'écriture et six mois de relecture ont donné vie à cet univers futuriste.</p>
+      <a class="btn-link" href="https://www.lisez.com/livre-grand-format/interfeel/9782266248280" target="_blank" rel="noopener">Voir sur lisez.com →</a>
+    </div>
+  </div>
+
+  <!-- Prix -->
+  <div class="section-break"><span>Récompenses</span></div>
+
+  <div class="prix-row">
+    <span class="prix-tag">🏆 CLA Books Awards 2019</span>
+    <span class="prix-tag">🏆 Prix Chimère 2019</span>
+  </div>
+
+  <div class="video-pair">
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/qVeSeqFAM48" title="CLA Books Awards 2019" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/x-iHInxINHw" title="Prix Chimère 2019" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- Presse -->
+  <div class="section-break"><span>Presse</span></div>
+
+  <div class="press-strip">
+    <figure>
+      <img src="https://antoninatger.com/wp-content/uploads/2018/12/article-le-parisien4541452473039796823.jpg" alt="Le Parisien">
+      <figcaption>Le Parisien</figcaption>
+    </figure>
+    <figure>
+      <img src="https://antoninatger.com/wp-content/uploads/2018/12/var-matin2552853952468518399.jpg" alt="Var Matin">
+      <figcaption>Var Matin</figcaption>
+    </figure>
+    <figure>
+      <img src="https://antoninatger.com/wp-content/uploads/2018/12/cestenville_dc3a9cembre_20182053665877715287419.jpg" alt="Le Progrès">
+      <figcaption>Le Progrès</figcaption>
+    </figure>
+    <figure>
+      <img src="https://antoninatger.com/wp-content/uploads/2018/12/biblioteca_magazine_sharp6991886659975644923.png" alt="Biblioteca Magazine">
+      <figcaption>Biblioteca</figcaption>
+    </figure>
+    <figure>
+      <img src="https://antoninatger.com/wp-content/uploads/2018/12/mon-quotidien_sharp-15215279362143752904.jpg" alt="Mon Quotidien">
+      <figcaption>Mon Quotidien</figcaption>
+    </figure>
+  </div>
+
+  <!-- Libraires -->
+  <div class="section-break"><span>En librairie</span></div>
+
+  <!-- 3 photos mises en avant -->
+  <div class="lib-featured">
+    <figure>
+      <img src="https://antoninatger.com/wp-content/uploads/2018/11/librairie-dialogue.jpg" alt="Librairie Dialogues, Brest">
+      <figcaption>Librairie Dialogues<br>Brest</figcaption>
+    </figure>
+    <figure>
+      <img src="https://antoninatger.com/wp-content/uploads/2018/11/img_20181005_135008.jpg" alt="Le Tramway, Lyon">
+      <figcaption>Le Tramway<br>Lyon</figcaption>
+    </figure>
+    <figure>
+      <img src="https://antoninatger.com/wp-content/uploads/2018/11/cultura-defense.jpg" alt="Cultura 4 Temps, Paris">
+      <figcaption>Cultura 4 Temps<br>Paris</figcaption>
+    </figure>
+  </div>
+
+  <!-- Scroll strip pour le reste -->
+  <p class="scroll-hint">← Faire défiler →</p>
+  <div class="lib-scroll-wrap">
+    <div class="lib-scroll">
+      <figure>
+        <img src="https://antoninatger.com/wp-content/uploads/2018/12/img_20181216_133720991375392856528900.jpg" alt="Martelle, Amiens">
+        <figcaption>Martelle (Amiens)</figcaption>
+      </figure>
+      <figure>
+        <img src="https://antoninatger.com/wp-content/uploads/2019/02/img_20190213_145339_9277943688063859936724.jpg" alt="La Page Suivante, Lyon">
+        <figcaption>La Page Suivante (Lyon)</figcaption>
+      </figure>
+      <figure>
+        <img src="https://antoninatger.com/wp-content/uploads/2018/12/img_20181211_194238_5248275567805265749039.jpg" alt="Racontes moi la Terre, Lyon">
+        <figcaption>Racontes moi la Terre (Lyon)</figcaption>
+      </figure>
+      <figure>
+        <img src="https://antoninatger.com/wp-content/uploads/2018/12/img_20181215_214134_8367679184982592834216.jpg" alt="Librairie Dialogues, Brest">
+        <figcaption>Dialogues (Brest)</figcaption>
+      </figure>
+      <figure>
+        <img src="https://antoninatger.com/wp-content/uploads/2018/11/img_20181103_121857-2.jpg" alt="Cultura Belle Épine">
+        <figcaption>Cultura Belle Épine</figcaption>
+      </figure>
+      <figure>
+        <img src="https://antoninatger.com/wp-content/uploads/2018/12/img_20181218_154839_9981864927620918086534.jpg" alt="Decitre Bellecour">
+        <figcaption>Decitre Bellecour</figcaption>
+      </figure>
+      <figure>
+        <img src="https://antoninatger.com/wp-content/uploads/2019/01/img_20190126_1546376807665775385215946.jpg" alt="Librairie Arthaud, Grenoble">
+        <figcaption>Arthaud (Grenoble)</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Vidéo libraire -->
+  <div class="video-solo" style="margin-top:20px;">
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/bferMJd1NIY" title="Librairie Martelle" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="video-caption" style="margin-top:5px;">Librairie Martelle / Passeurs de rêve (Amiens)</p>
+  </div>
+
+  <!-- Vidéos -->
+  <div class="section-break"><span>Vidéos</span></div>
+
+  <div class="video-trio">
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/zRuI3mILtQ4" title="Interfeel vidéo" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/10kaOJrw4aE?start=900" title="Interfeel vidéo 2" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/JXmFaTJEsV4" title="Interfeel vidéo 3" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- Blogueurs -->
+  <div class="section-break"><span>Blogueurs &amp; lecteurs</span></div>
+
+  <p class="bloggers-intro">Plus de 20 chroniques de lecteurs et blogueurs littéraires :</p>
+
+  <div class="bloggers-grid">
+    <a href="https://bbbsmum.com/2018/06/23/selections-livres-de-lete-2018-01-romans-ados/" target="_blank" rel="noopener">Bbbsmum</a>
+    <a href="http://sophielit.ca/critique.php?id=1952" target="_blank" rel="noopener">Sophie Lit</a>
+    <a href="https://www.adventureinbooksland.com/single-post/2018/07/24/Interfeel---Antonin-Atger" target="_blank" rel="noopener">Adventure in Booksland</a>
+    <a href="https://saveurlitteraire.wordpress.com/2018/07/25/41-interfeel-antonin-atger/" target="_blank" rel="noopener">Saveur Littéraire</a>
+    <a href="https://argenticfairiesentreleslignes.wordpress.com/2018/09/03/interfeel-antonin-atger/" target="_blank" rel="noopener">Argentic Fairies</a>
+    <a href="https://cafe-powell.com/2018/06/interfeel-black-mirror-version-ado/" target="_blank" rel="noopener">Cafe Powell</a>
+    <a href="https://bettierosebooks.com/2018/08/31/chronique-interfeel-dantonin-atger-et-si-le-futur-des-reseaux-sociaux-residait-dans-le-partage-des-emotions/" target="_blank" rel="noopener">Bettie Rose Books</a>
+    <a href="https://meliegrey.blogspot.com/2018/09/interfeel-de-antonin-atger.html" target="_blank" rel="noopener">Melie Grey</a>
+    <a href="https://leslecturesdemeg.wordpress.com/2018/08/10/interfeel-antonin-atger/" target="_blank" rel="noopener">Les lectures de Meg</a>
+    <a href="https://unoceandelivres.wordpress.com/2018/07/11/interfeel-de-antonin-atger/" target="_blank" rel="noopener">Un océan de livres</a>
+    <a href="http://www.pipandpulp.fr/2018/10/interfeel-young-adult-science-fiction.html" target="_blank" rel="noopener">Pip and Pulp</a>
+    <a href="https://muffinsandbooks.wordpress.com/2018/07/16/chronique-interfeel-dantonin-atger/" target="_blank" rel="noopener">Muffins and Books</a>
+    <a href="http://lepetitfurania.e-monsite.com/pages/page-16.html" target="_blank" rel="noopener">Le petit furania</a>
+    <a href="https://ladiescolocblog.wordpress.com/2018/08/02/chronique-interfeel-de-antonin-atger/" target="_blank" rel="noopener">Ladies Coloc Blog</a>
+    <a href="http://www.labibliodesophie.fr/interfeel-antonin-atger/" target="_blank" rel="noopener">La biblio de Sophie</a>
+    <a href="https://blogdelecturelacouleurdesmots.wordpress.com/2018/08/24/interfeel-de-antonin-atger/" target="_blank" rel="noopener">La couleur des mots</a>
+    <a href="https://unehistoirede.wordpress.com/2018/12/18/interfeel-dantonin-atger/" target="_blank" rel="noopener">Une histoire de</a>
+    <a href="https://bimbambooks.wordpress.com/2018/12/21/chronique-interfeel-de-antonin-atger/" target="_blank" rel="noopener">Bim Bam Books</a>
+    <a href="https://lheuredelire.wordpress.com/2019/01/22/interfeel-antonin-atger/" target="_blank" rel="noopener">L'heure de lire</a>
+    <a href="https://le-coin-lecture-emilie.blogspot.com/2019/02/interfeel.html" target="_blank" rel="noopener">Le coin lecture d'Emilie</a>
+    <a href="https://krystiewonka.blogspot.com/2019/02/plib2019-interfeel-de-antonin-atger.html" target="_blank" rel="noopener">Krystie Wonka</a>
+  </div>
+
+  <!-- Photo lecteur -->
+  <div class="reader-photo" style="margin-top:32px; margin-bottom:16px;">
+    <img src="https://antoninatger.com/wp-content/uploads/2018/12/img_20181216_1355297856479150307718689.jpg" alt="Lecteur avec Interfeel">
+    <p class="caption-text">Et peut-être le plus important : <em>vous</em> en parlez !</p>
+  </div>
+
+</div><!-- /page-wrap -->
+
+
+<!-- ══════════ AUTRES PUBLICATIONS ══════════ -->
+<section class="timeline-section">
+  <div class="page-wrap">
+
+    <header class="timeline-header">
+      <span class="eyebrow">Avant Interfeel</span>
+      <h2>Parcours littéraire</h2>
+    </header>
+
+    <div class="timeline">
+
+      <div class="timeline-item" data-year="2008">
+        <h3>Lauréat du Quai du Polar</h3>
+        <span class="type-tag">Concours · Nouvelle</span>
+        <p>Première participation à un concours littéraire, premier prix. Le thème imposé : « Rendez-vous sur les quais ». L'auteur a intitulé sa nouvelle <em>Les Étoiles</em>. À l'issue de la remise, le responsable du festival est venu lui serrer la main — de quoi motiver la suite.</p>
+        <div class="timeline-photo">
+          <img src="https://antoninatger.com/wp-content/uploads/2018/11/dsc_0507.jpg" alt="Remise du prix Quai du Polar 2008">
+        </div>
+      </div>
+
+      <div class="timeline-item" data-year="2008">
+        <h3><em>Meyzieu, quand la ville danse</em></h3>
+        <span class="type-tag">Ouvrage collectif</span>
+        <p>Collaboration avec le photographe Jean-François Marin : plus d'une centaine d'entretiens menés auprès des habitants, tissés en une trame narrative reliant toutes les voix. L'ouvrage s'est vendu à plus de 2 000 exemplaires — une partie du travail réalisée depuis le Canada, où l'auteur résidait pour une année.</p>
+      </div>
+
+      <div class="timeline-item" data-year="2009">
+        <h3><em>Les Étoiles</em> — publication en recueil</h3>
+        <span class="type-tag">Recueil · Quai du Polar</span>
+        <p>La nouvelle primée en 2008 est republiée dans le recueil rassemblant les lauréats des quatre dernières éditions du festival.</p>
+      </div>
+
+      <div class="timeline-item" data-year="2009">
+        <h3>Colloque — <em>Le Rythme, le Mot et l'Image</em></h3>
+        <span class="type-tag">Communication académique · Vancouver</span>
+        <p>Communication à l'University of Victoria sur les corrélations entre réalité, livre et cinéma à travers <em>Entre les Murs</em> — François Bégaudeau étant à la fois professeur, auteur du roman et acteur du film de Laurent Cantet (Palme d'Or Cannes 2008). Un échange à distance avec Laurent Cantet lui-même a pu être établi dans le cadre de ce travail.</p>
+        <a class="t-link" href="http://www.fichier-pdf.fr/2012/05/02/entre-les-murs-entre-realite-litterature-et-cinema-1/" target="_blank" rel="noopener">Lire la communication (PDF) →</a>
+      </div>
+
+      <div class="timeline-item" data-year="2012">
+        <h3><em>L'Indifférence</em></h3>
+        <span class="type-tag">Nouvelle · Sorbonne, Master Édition</span>
+        <p>Sélectionné parmi les candidatures à cet appel à textes sur le thème du fait divers. Présence au Salon du Livre de Paris. Disponible uniquement dans l'ouvrage imprimé.</p>
+        <a class="t-link" href="http://editions-fediver.fr/" target="_blank" rel="noopener">Site de l'éditeur →</a>
+      </div>
+
+      <div class="timeline-item" data-year="2012">
+        <h3>Sélection ACLA</h3>
+        <span class="type-tag">Nouvelle · Association Culture Loisir Antibes</span>
+        <p>Sélectionné pour publication dans le recueil de l'Association Culture Loisir Antibes sur un sujet imposé particulièrement exigeant.</p>
+        <a class="t-link" href="http://acla06.com/actualites/concours-d-ecriture/2012/04/01/selection-concours-d-ecriture-2012" target="_blank" rel="noopener">Voir la sélection →</a>
+      </div>
+
+    </div><!-- /timeline -->
+
+  </div><!-- /page-wrap -->
+</section>
+
+</body>
+</html>
