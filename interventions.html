@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interventions — Antonin Atger</title>
+<title>Interventions - Antonin Atger</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -254,6 +254,91 @@
   }
   .cta-btn:hover { background: #a82d22; transform: translateY(-1px); }
 
+  /* ── Trust section ── */
+  .trust-section {
+    margin: 40px 24px 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .trust-toggle {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 26px;
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s;
+  }
+  .trust-toggle:hover { background: #faf8f5; }
+  .trust-section.open .trust-toggle { background: var(--accent-light); }
+  .trust-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--border);
+    min-width: 36px;
+    transition: color .2s;
+  }
+  .trust-section.open .trust-icon { color: var(--accent); }
+  .trust-toggle-title {
+    flex: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .trust-toggle-sub {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    margin-top: 3px;
+  }
+  .trust-chevron {
+    width: 24px; height: 24px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-soft);
+    transition: transform .3s, color .2s;
+  }
+  .trust-section.open .trust-chevron { transform: rotate(180deg); color: var(--accent); }
+
+  .trust-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s cubic-bezier(.4,0,.2,1);
+  }
+  .trust-section.open .trust-body { max-height: 2000px; }
+
+  .trust-inner {
+    padding: 0 26px 28px 82px;
+    border-top: 1px solid #f0ded9;
+  }
+
+  .trust-cat-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    padding-top: 22px;
+  }
+  .trust-names {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+  .trust-names .name {
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+  .trust-section.open .trust-names .name {
+    opacity: 1;
+  }
+
   /* ── Footer ── */
   .footer-info {
     margin: 40px 24px 0;
@@ -309,7 +394,7 @@
       <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
     <div class="card-body"><div class="card-inner">
-      <p class="card-description">Pourquoi les Fake News nous séduisent-elles autant ? En m'appuyant sur mes recherches en <strong>sciences cognitives</strong>, j'explique comment notre cerveau — pourtant remarquable — est aussi faillible. À travers des illusions d'optique et des exemples concrets, je montre pourquoi les fausses informations circulent plus vite et plus loin que les vraies, et comment nous pouvons développer des réflexes pour les identifier.</p>
+      <p class="card-description">Pourquoi les Fake News nous séduisent-elles autant ? En m'appuyant sur mes recherches en <strong>sciences cognitives</strong>, j'explique comment notre cerveau - pourtant remarquable - est aussi faillible. À travers des illusions d'optique et des exemples concrets, je montre pourquoi les fausses informations circulent plus vite et plus loin que les vraies, et comment nous pouvons développer des réflexes pour les identifier.</p>
       <div class="programme-label">Au programme</div>
       <ul class="programme-list">
         <li>Illusions d'optique et biais de pensée pour illustrer nos angles morts cognitifs</li>
@@ -334,7 +419,7 @@
       <div class="card-num">02</div>
       <div class="card-headline">
         <div class="card-title">Désinformation : au-delà de la Fake News</div>
-        <div class="card-subtitle">Manipuler sans mentir — les techniques invisibles de l'infox</div>
+        <div class="card-subtitle">Manipuler sans mentir - les techniques invisibles de l'infox</div>
       </div>
       <div class="card-tags">
         <span class="tag">1 h – 2 h</span>
@@ -343,7 +428,7 @@
       <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
     <div class="card-body"><div class="card-inner">
-      <p class="card-description">Suite naturelle à la première intervention, cette conférence va plus loin : les Fake News ne représentent qu'une petite partie du phénomène de désinformation. <strong>Il est possible de manipuler l'information sans jamais mentir frontalement</strong> — en cadrant, hiérarchisant, ou sortant des faits vrais de leur contexte. Je présente les techniques les plus utilisées et les biais qui les rendent efficaces.</p>
+      <p class="card-description">Suite naturelle à la première intervention, cette conférence va plus loin : les Fake News ne représentent qu'une petite partie du phénomène de désinformation. <strong>Il est possible de manipuler l'information sans jamais mentir frontalement</strong> - en cadrant, hiérarchisant, ou sortant des faits vrais de leur contexte. Je présente les techniques les plus utilisées et les biais qui les rendent efficaces.</p>
       <div class="programme-label">Au programme</div>
       <ul class="programme-list">
         <li>Exemples de manipulation de l'information sans mensonge</li>
@@ -378,7 +463,7 @@
       <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
     <div class="card-body"><div class="card-inner">
-      <p class="card-description">Les influenceurs occupent une place centrale dans l'univers médiatique des jeunes. Mais pourquoi leur parole est-elle si persuasive ? Cette intervention analyse les <strong>mécanismes cognitifs, émotionnels et sociaux</strong> qui nous rendent perméables à leur influence — sans diaboliser les créateurs de contenu, mais en donnant les clés pour regarder leurs contenus avec recul.</p>
+      <p class="card-description">Les influenceurs occupent une place centrale dans l'univers médiatique des jeunes. Mais pourquoi leur parole est-elle si persuasive ? Cette intervention analyse les <strong>mécanismes cognitifs, émotionnels et sociaux</strong> qui nous rendent perméables à leur influence - sans diaboliser les créateurs de contenu, mais en donnant les clés pour regarder leurs contenus avec recul.</p>
       <div class="programme-label">Au programme</div>
       <ul class="programme-list">
         <li>Sommes-nous vraiment influençables ? Démonstration par l'exemple</li>
@@ -386,7 +471,7 @@
         <li>Biais cognitifs à l'œuvre : halo, confirmation, engagement, popularité</li>
         <li>La relation parasociale : l'illusion de proximité avec un créateur de contenu</li>
         <li>Comment les influenceurs cadrent leurs contenus (storytelling, mise en scène de la réussite)</li>
-        <li>Contenus sponsorisés, arnaques et influence commerciale — exemples concrets</li>
+        <li>Contenus sponsorisés, arnaques et influence commerciale - exemples concrets</li>
         <li>Outils pour analyser les contenus et identifier les intérêts en jeu</li>
       </ul>
       <a href="https://antoninatger.com/contact/" class="cta-btn" target="_blank" rel="noopener">Je veux en savoir plus →</a>
@@ -399,7 +484,7 @@
       <div class="card-num">04</div>
       <div class="card-headline">
         <div class="card-title">Déjouer les pièges de la rhétorique</div>
-        <div class="card-subtitle">Éthos, Pathos, Logos — convaincre sans tromper</div>
+        <div class="card-subtitle">Éthos, Pathos, Logos - convaincre sans tromper</div>
       </div>
       <div class="card-tags">
         <span class="tag">1 h – 2 h</span>
@@ -408,13 +493,13 @@
       <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
     <div class="card-body"><div class="card-inner">
-      <p class="card-description">Si les mots sont une arme, la rhétorique est l'art de s'en servir. Indispensable pour convaincre, elle peut aussi servir à manipuler — souvent sans que l'on s'en rende compte. Cette formation très interactive permet de <strong>comprendre et pratiquer les techniques de persuasion</strong>, d'identifier les raisonnements fallacieux, et d'apprendre à débattre honnêtement.</p>
+      <p class="card-description">Si les mots sont une arme, la rhétorique est l'art de s'en servir. Indispensable pour convaincre, elle peut aussi servir à manipuler - souvent sans que l'on s'en rende compte. Cette formation très interactive permet de <strong>comprendre et pratiquer les techniques de persuasion</strong>, d'identifier les raisonnements fallacieux, et d'apprendre à débattre honnêtement.</p>
       <div class="programme-label">Au programme</div>
       <ul class="programme-list">
         <li>Les différents types de rhétorique et leurs usages</li>
         <li>Les trois piliers : Éthos (crédibilité), Pathos (émotion), Logos (logique)</li>
         <li>Mise en pratique en groupes : convaincre ses camarades avec les techniques apprises</li>
-        <li>Les raisonnements fallacieux les plus courants — et comment les déjouer</li>
+        <li>Les raisonnements fallacieux les plus courants - et comment les déjouer</li>
         <li>Techniques pour débattre sereinement et s'enrichir mutuellement</li>
       </ul>
       <div class="video-block">
@@ -442,11 +527,11 @@
       <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
     <div class="card-body"><div class="card-inner">
-      <p class="card-description">Pourquoi reste-t-on happé à la fin d'un épisode ? Pourquoi certaines histoires nous font-elles pleurer alors que rien n'est réel ? Les créateurs sont des magiciens — et comme les illusionnistes, ils possèdent des astuces. Cette intervention très <strong>interactive</strong> décortique avec le public ses œuvres préférées pour révéler les mécanismes narratifs à l'œuvre.</p>
+      <p class="card-description">Pourquoi reste-t-on happé à la fin d'un épisode ? Pourquoi certaines histoires nous font-elles pleurer alors que rien n'est réel ? Les créateurs sont des magiciens - et comme les illusionnistes, ils possèdent des astuces. Cette intervention très <strong>interactive</strong> décortique avec le public ses œuvres préférées pour révéler les mécanismes narratifs à l'œuvre.</p>
       <div class="programme-label">Au programme</div>
       <ul class="programme-list">
         <li>Le cycle du héros : la structure commune à (presque) toutes les histoires</li>
-        <li>Analyse interactive des œuvres préférées du public — séries, mangas, romans…</li>
+        <li>Analyse interactive des œuvres préférées du public - séries, mangas, romans…</li>
         <li>Les ficelles de l'écriture pour rendre une histoire crédible et des personnages réalistes</li>
         <li>Le métier d'écrivain : cycle du livre, relations avec l'éditeur, les libraires</li>
         <li>Questions-réponses autour de l'écriture</li>
@@ -461,7 +546,7 @@
       <div class="card-num">06</div>
       <div class="card-headline">
         <div class="card-title">Ateliers d'écriture heureux</div>
-        <div class="card-subtitle">Décomplexer, créer, raconter — écrire sans peur de la page blanche</div>
+        <div class="card-subtitle">Décomplexer, créer, raconter - écrire sans peur de la page blanche</div>
       </div>
       <div class="card-tags">
         <span class="tag">1 h – 2 h</span>
@@ -470,7 +555,7 @@
       <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
     <div class="card-body"><div class="card-inner">
-      <p class="card-description">Un français sur trois rêve d'écrire un livre. Presque personne ne se lance. Raison ? On nous a appris que l'écriture est une souffrance réservée aux « talents ». C'est faux. Cet atelier propose une <strong>méthode simple et bienveillante</strong> pour que chacun, quel que soit son niveau, puisse créer son histoire — et surtout prendre plaisir à écrire.</p>
+      <p class="card-description">Un français sur trois rêve d'écrire un livre. Presque personne ne se lance. Raison ? On nous a appris que l'écriture est une souffrance réservée aux « talents ». C'est faux. Cet atelier propose une <strong>méthode simple et bienveillante</strong> pour que chacun, quel que soit son niveau, puisse créer son histoire - et surtout prendre plaisir à écrire.</p>
       <div class="programme-label">Au programme</div>
       <ul class="programme-list">
         <li>Exercice de décomplexage : écrire un texte avec le plus de fautes possible !</li>
@@ -498,12 +583,12 @@
       <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
     <div class="card-body"><div class="card-inner">
-      <p class="card-description">Les professeurs sont de plus en plus sollicités pour enseigner l'esprit critique — mais sont-ils eux-mêmes formés à cet enseignement ? Sur la base de mes recherches en psychologie et de mes propres interventions, j'ai conçu une <strong>formation gratuite, disponible en ligne</strong>, à destination des enseignants et du personnel encadrant.</p>
+      <p class="card-description">Les professeurs sont de plus en plus sollicités pour enseigner l'esprit critique - mais sont-ils eux-mêmes formés à cet enseignement ? Sur la base de mes recherches en psychologie et de mes propres interventions, j'ai conçu une <strong>formation gratuite, disponible en ligne</strong>, à destination des enseignants et du personnel encadrant.</p>
       <div class="programme-label">Contenu de la formation</div>
       <ul class="programme-list">
         <li>Comment identifier la véracité d'une information en ligne</li>
         <li>Quels outils d'esprit critique solliciter pour évaluer la pertinence d'un fait</li>
-        <li>Pourquoi il est parfois difficile de transmettre un contenu à une classe — et comment y remédier</li>
+        <li>Pourquoi il est parfois difficile de transmettre un contenu à une classe - et comment y remédier</li>
         <li>Mise en pratique à partir d'un échange réel avec un élève</li>
       </ul>
       <div class="video-block">
@@ -521,7 +606,7 @@
     <div class="card-header" onclick="toggle('c8')">
       <div class="card-num" style="font-size:1.4rem">✦</div>
       <div class="card-headline">
-        <div class="card-title">Conférence complète — médiathèque Simone Veil</div>
+        <div class="card-title">Conférence complète - médiathèque Simone Veil</div>
         <div class="card-subtitle">Enregistrement intégral d'une intervention Fake News et Esprit Critique</div>
       </div>
       <div class="card-tags">
@@ -531,7 +616,7 @@
       <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
     <div class="card-body"><div class="card-inner">
-      <p class="card-description">Envie de voir à quoi ressemble une intervention en conditions réelles ? Voici l'enregistrement complet d'une conférence <strong>Fake News et Esprit Critique</strong> donnée à la médiathèque Simone Veil de Jassans-Riottier — disponible gratuitement en ligne.</p>
+      <p class="card-description">Envie de voir à quoi ressemble une intervention en conditions réelles ? Voici l'enregistrement complet d'une conférence <strong>Fake News et Esprit Critique</strong> donnée à la médiathèque Simone Veil de Jassans-Riottier - disponible gratuitement en ligne.</p>
       <div class="video-block">
         <div class="video-label">Enregistrement complet</div>
         <div class="video-wrapper">
@@ -542,32 +627,93 @@
     </div></div>
   </div>
 
+  <!-- 9 : FakeMètre -->
+  <div class="card" id="c9">
+    <div class="card-header" onclick="toggle('c9')">
+      <div class="card-num" style="font-size:1.4rem">✦</div>
+      <div class="card-headline">
+        <div class="card-title">FakeMètre</div>
+        <div class="card-subtitle">Jeu pédagogique pour s'entraîner à vérifier les sources</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag accent">Gratuit · En ligne</span>
+        <span class="tag">Tout public</span>
+      </div>
+      <div class="card-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="card-body"><div class="card-inner">
+      <p class="card-description">FakeMètre est un <strong>jeu pédagogique gratuit</strong> conçu pour s'entraîner à vérifier les sources et évaluer la fiabilité d'affirmations - seul ou en classe. Une manière ludique de prolonger les interventions et de développer les réflexes du fact-checking au quotidien.</p>
+      <a href="https://antoninatger.com/jeux-pedagogiques/" class="cta-btn" target="_blank" rel="noopener">Jouer gratuitement →</a>
+    </div></div>
+  </div>
+
+</div>
+
+<!-- Ils m'ont fait confiance -->
+<div class="trust-section" id="trust">
+  <div class="trust-toggle" onclick="toggleTrust()">
+    <div class="trust-icon">★</div>
+    <div style="flex:1">
+      <div class="trust-toggle-title">Ils m'ont fait confiance</div>
+      <div class="trust-toggle-sub">86 établissements scolaires · 36 médiathèques &amp; bibliothèques</div>
+    </div>
+    <div class="trust-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+  <div class="trust-body">
+    <div class="trust-inner">
+
+      <div class="trust-cat-label">Établissements scolaires</div>
+      <div class="trust-names" id="trust-schools"></div>
+
+      <div class="trust-cat-label" style="margin-top:20px">Médiathèques &amp; bibliothèques</div>
+      <div class="trust-names" id="trust-libraries"></div>
+
+    </div>
+  </div>
 </div>
 
 <!-- Footer -->
 <div class="footer-info">
   <div class="fi-title">Informations pratiques</div>
-  <p><strong>Durée</strong> — Chaque intervention dure entre 1 heure et 2 heures, et peut être adaptée à vos contraintes de programmation.</p>
-  <p><strong>Publics</strong> — Ces interventions s'adressent aux élèves de CM1 au lycée, ainsi qu'aux adultes en médiathèque ou en formation. Des adaptations sont possibles selon l'âge et le contexte.</p>
-  <p><strong>Tarifs</strong> — Les interventions en établissement scolaire et en médiathèque sont facturées au tarif de <a href="http://la-charte.fr/le-metier/rencontres/article/la-remuneration-des-rencontres-et" target="_blank" rel="noopener">la Charte des auteurs</a>. Des formats personnalisés sont possibles — n'hésitez pas à en discuter.</p>
-  <p><strong>Contact</strong> — Pour toute demande : <a href="https://antoninatger.com/contact/" target="_blank" rel="noopener">antoninatger.com/contact</a> ou <strong>contact(at)antoninatger.com</strong>.</p>
+  <p><strong>Durée</strong> - Chaque intervention dure entre 1 heure et 2 heures, et peut être adaptée à vos contraintes de programmation.</p>
+  <p><strong>Publics</strong> - Ces interventions s'adressent aux élèves de CM1 au lycée, ainsi qu'aux adultes en médiathèque ou en formation. Des adaptations sont possibles selon l'âge et le contexte.</p>
+  <p><strong>Tarifs</strong> - Les interventions en établissement scolaire et en médiathèque sont facturées au tarif de <a href="http://la-charte.fr/le-metier/rencontres/article/la-remuneration-des-rencontres-et" target="_blank" rel="noopener">la Charte des auteurs</a>. Des formats personnalisés sont possibles - n'hésitez pas à en discuter.</p>
+  <p><strong>Contact</strong> - Pour toute demande : <a href="https://antoninatger.com/contact/" target="_blank" rel="noopener">antoninatger.com/contact</a> ou <strong>contact(at)antoninatger.com</strong>.</p>
 </div>
 
 <script>
-  function sendHeight() {
-    window.parent.postMessage({ iframeHeight: document.body.scrollHeight }, '*');
-  }
-
+  // ── Accordéon interventions ──
   function toggle(id) {
     const card = document.getElementById(id);
     const isOpen = card.classList.contains('open');
     document.querySelectorAll('.card.open').forEach(c => c.classList.remove('open'));
     if (!isOpen) card.classList.add('open');
-    setTimeout(sendHeight, 500);
   }
 
-  window.addEventListener('load', sendHeight);
-  window.addEventListener('resize', sendHeight);
+  // ── Données ──
+  const schools = ["Lycée Pierre Termier","Collège Gérard de Nerval","Collège Lestonnac","Collège Français Blue Pool Road","Collège Français Tseung Kwan O","Lycée Français de Köpenick","EREA de Sorbier","École Maz de la Raz","EREA Nelson Mandela","Collège Champollion","Lycée Jean-Paul Sartre","Lycée Tony Garnier","Collège Théodore Monod","Collège Champagnat","Collège Le Paruthiol","Lycée Charles de Gaulle","Lycée Jean Hanzelet","Collège Léon-Marie","Lycée Colbert","Collège Nelson Mandela","Lycée Hector Guimard","Collège Jean Moulin","Ensemble scolaire Saint-Gatien La Salle","Collège Lamartine","Collège Dargent","Lycée Albert Camus","Lycée Charlie Chaplin","Lycée Aristide Bergès","CDI Lycée Saint-Joseph","Lycée Becquerel","Collège Georges Brassens","Lycée du Premier Film","Lycée La Favorite","Lycée Fays","Lycée Henri Laurens","Lycée du Golf","Collège Alex Mezenc","Collège Simone Veil","Lycée Saint-Exupéry","Lycée Saint-Marc","Collège Yvon Morandat","Collège Saint-François d'Assise","Lycée Marcel Sembat","Collège du Pays de Gavot","Collège Geneviève Anthonioz-de-Gaulle","Collège Alphonse Daudet","Lycée Robert Doisneau","Lycée Français International","Institution Saint-Joseph","Lycée Professionnel Jacques Vaucanson","Lycée Ferdinand Buisson","Lycée Privé Montesquieu","Lycée Adam de Craponne","Lycée Lakanal","Lycée Rosa Parks","Collège Charles de Gaulle","Lycée Chevreul Lestonnac","Collège François Couperin","Collège Pasteur","Collège Maryse Bastié","Cité scolaire Claude Bernard","Collège Hélène Boucher","Lycée Alexandre Dumas","École Alsacienne","Collège Bellecombe","Collège du Sauveur","Collège de la Côte Roannaise","Collège Mayorga","Notre-Dame Saint-François","Lycée Gaspard Monge","LP Saint-Joseph Vierzon","Lycée Vauban","Collège Lafayette","Collège La Salle","Centre scolaire Notre-Dame Ozanam","Lycée Condorcet","Collège du Klosterwald","École Massillon","Institution Le Bois-Robert","Lycée Hôtelier de l'Hermitage","Lycée International","Lycée Ozanam","Collège Jean de Verrazzane","Notre-Dame Saint-Joseph","Collège Privé Notre-Dame","Collège Vallon"];
+
+  const libraries = ["Médiathèque de Pollionnay","Médiathèque de Saint-Aubin-lès-Elbeuf","Bibliothèque de Huningue","Médiathèque de Bourgoin-Jallieu","Médiathèque de Salon-de-Provence","Bibliothèque Méjanes","Médiathèque de Châtillon-sur-Chalaronne","Médiathèque de Charvieu-Chavagneux","Médiathèque du Viviers","Médiathèque Jacques et Aimé Bertrand","Médiathèque de Pusignan","Médiathèque d'Évian-les-Bains","Bibliothèque de Pusignan","Médiathèque Simone Veil","Bibliothèque de Ternay","Médiathèque de Voreppe","Bibliothèque Méjanes Allumettes","Bibliothèque des Deux Mondes","Médiathèque de Langeac","Médiathèque Michel Courot","Médiathèque d'Ambilly","Médiathèque de Trets","Médiathèque de Grézieu-la-Varenne","Médiathèque Paul Éluard","Bibliothèque de Montanay","Bibliothèque Jean Giono","Médiathèque de Chirens","Médiathèque de Saint-Genis-Pouilly","Médiathèque Léo Ferré","Médiathèque Champollion","Bibliothèque Départementale du Val-d'Oise","Médiathèque de Vif","Bibliothèque de la Part-Dieu","Médiathèque Visages du Monde","Médiathèque La MéMo","Bibliothèque de Mâcon"];
+
+  // Injecter les noms comme spans avec fondu décalé
+  function buildNames(list, containerId) {
+    const container = document.getElementById(containerId);
+    list.forEach((name, i) => {
+      const span = document.createElement('span');
+      span.className = 'name';
+      span.style.transitionDelay = (i * 25) + 'ms';
+      span.textContent = name + (i < list.length - 1 ? ',\u00A0' : '');
+      container.appendChild(span);
+    });
+  }
+
+  buildNames(schools, 'trust-schools');
+  buildNames(libraries, 'trust-libraries');
+
+  // ── Accordéon trust ──
+  function toggleTrust() {
+    document.getElementById('trust').classList.toggle('open');
+  }
 </script>
 
 </body>
