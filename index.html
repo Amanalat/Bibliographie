@@ -812,9 +812,8 @@ a:hover { text-decoration: underline; }
   inset: 0;
   z-index: 9999;
   background: rgba(0,0,0,.92);
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 #lb-overlay.active { display: flex; }
@@ -824,13 +823,14 @@ a:hover { text-decoration: underline; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 90vw;
-  max-height: 90vh;
+  padding: 60px 20px 20px;
+  min-height: 100%;
+  justify-content: center;
 }
 
 #lb-img {
   max-width: 88vw;
-  max-height: 78vh;
+  max-height: 72vh;
   object-fit: contain;
   display: block;
   box-shadow: 0 8px 48px rgba(0,0,0,.6);
@@ -876,24 +876,30 @@ a:hover { text-decoration: underline; }
   opacity: .9;
   transition: opacity .2s, background .2s;
   font-family: sans-serif;
+  z-index: 10001;
 }
 #lb-close:hover { opacity: 1; background: rgba(255,255,255,0.25); }
 
 #lb-close-bottom {
-  margin-top: 18px;
-  padding: 10px 28px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.35);
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+  padding: 12px 36px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.4);
   color: #fff;
   font-family: 'Source Sans 3', Georgia, sans-serif;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: .12em;
+  letter-spacing: .14em;
   text-transform: uppercase;
   cursor: pointer;
   transition: background .2s;
+  white-space: nowrap;
 }
-#lb-close-bottom:hover { background: rgba(255,255,255,0.2); }
+#lb-close-bottom:hover { background: rgba(255,255,255,0.25); }
 
 #lb-prev, #lb-next {
   position: fixed;
@@ -912,6 +918,7 @@ a:hover { text-decoration: underline; }
   justify-content: center;
   transition: background .2s;
   line-height: 1;
+  z-index: 10001;
 }
 #lb-prev:hover, #lb-next:hover { background: rgba(255,255,255,.2); }
 #lb-prev { left: 16px; }
@@ -970,6 +977,8 @@ a:hover { text-decoration: underline; }
     show();
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
+    overlay.scrollTop = 0;
   }
 
   function show() {
