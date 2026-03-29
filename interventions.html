@@ -554,27 +554,20 @@
 </div>
 
 <script>
-<<<<<<< HEAD
   function sendHeight() {
     window.parent.postMessage({ iframeHeight: document.body.scrollHeight }, '*');
   }
 
-=======
->>>>>>> 83aa7a3e53ccbbf71b47cc0f6c348146e85fddca
   function toggle(id) {
     const card = document.getElementById(id);
     const isOpen = card.classList.contains('open');
     document.querySelectorAll('.card.open').forEach(c => c.classList.remove('open'));
     if (!isOpen) card.classList.add('open');
-<<<<<<< HEAD
     setTimeout(sendHeight, 500);
   }
 
   window.addEventListener('load', sendHeight);
   window.addEventListener('resize', sendHeight);
-=======
-  }
->>>>>>> 83aa7a3e53ccbbf71b47cc0f6c348146e85fddca
 </script>
 
 </body>
