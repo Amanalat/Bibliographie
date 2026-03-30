@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collaborations – Antonin Atger</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2ed;
+    --surface: #faf8f5;
+    --border: #ddd9d2;
+    --accent: #b5410e;
+    --accent-dim: rgba(181,65,14,0.08);
+    --text: #1a1916;
+    --muted: #8a877f;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.65;
+    padding: 0 0 80px;
+  }
+
+  /* ── MASTHEAD ─────────────────────────────────── */
+  .masthead {
+    border-bottom: 1px solid var(--border);
+    padding: 36px 40px 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+  }
+  .masthead-title {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .masthead-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .masthead-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── LAYOUT ───────────────────────────────────── */
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ── SECTION HEADERS ──────────────────────────── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 48px 0 24px;
+  }
+  .section-label span {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── FEATURED GRID (2 cols) ────────────────────── */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .featured-card {
+    background: var(--surface);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: background 0.2s;
+  }
+  .featured-card:hover { background: #f0ece5; }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-tag {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    background: var(--accent-dim);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+  .card-date {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .card-title em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: #5a574f;
+    line-height: 1.6;
+  }
+
+  /* ── IMAGE ────────────────────────────────────── */
+  .card-img {
+    width: 100%;
+    aspect-ratio: 16/7;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .featured-card:hover .card-img { opacity: 1; }
+
+  /* ── VIDEO EMBED ──────────────────────────────── */
+  .embed-wrap {
+    position: relative;
+    padding-top: 56.25%;
+    background: #000;
+  }
+  .embed-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ── PRISME CARD (full width) ─────────────────── */
+  .featured-card.wide {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .wide-left { display: flex; flex-direction: column; gap: 16px; }
+  .wide-right { display: flex; flex-direction: column; gap: 16px; }
+
+  /* ── OTHERS GRID ──────────────────────────────── */
+  .others-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .mini-card {
+    background: var(--surface);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: background 0.2s;
+  }
+  .mini-card:hover { background: #f0ece5; }
+
+  .mini-title {
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .mini-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .embed-mini {
+    position: relative;
+    padding-top: 56.25%;
+    background: #000;
+    margin-top: 4px;
+  }
+  .embed-mini iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .mini-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: 4px;
+    transition: opacity 0.15s;
+  }
+  .mini-link:hover { opacity: 0.7; }
+  .mini-link::after { content: '↗'; font-size: 10px; }
+
+  /* Fun Radio: 2 cols */
+  .mini-card.funradio {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .funradio-inner { display: flex; flex-direction: column; gap: 10px; }
+
+  @media (max-width: 700px) {
+    .masthead { padding: 24px 20px 18px; }
+    .wrap { padding: 0 16px; }
+    .featured-grid, .others-grid { grid-template-columns: 1fr; }
+    .featured-card.wide { grid-column: 1; display: flex; flex-direction: column; }
+    .mini-card.funradio { grid-column: 1; display: flex; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-title">Antonin Atger</div>
+  <div class="masthead-rule"></div>
+  <div class="masthead-label">Collaborations & interventions médias</div>
+</div>
+
+<div class="wrap">
+
+  <!-- ── À LA UNE ────────────────────────────────── -->
+  <div class="section-label"><span>À la une</span></div>
+
+  <div class="featured-grid">
+
+    <!-- Dinosaures -->
+    <div class="featured-card">
+      <div class="card-meta">
+        <span class="card-tag">YouTube · Dave Sheik</span>
+      </div>
+      <div class="card-title">Les gens ne croient pas aux <em>dinosaures</em></div>
+      <div class="card-desc">Intervention dans la vidéo de Dave Sheik pour expliquer les ressorts psychologiques et sociaux du complotisme.</div>
+      <div class="embed-wrap">
+        <iframe src="https://www.youtube.com/embed/qohPvXsYdjI?si=-W_ZcxHp-Tpw48U_" allowfullscreen loading="lazy" title="Les gens ne croient pas aux dinosaures"></iframe>
+      </div>
+    </div>
+
+    <!-- Prisme (full width) -->
+    <div class="featured-card wide">
+      <div class="wide-left">
+        <div class="card-meta">
+          <span class="card-tag">Congrès Prisme · ASTEC</span>
+          <span class="card-date">13 déc. 2025</span>
+        </div>
+        <div class="card-title">Lutte contre l'<em>emprise</em> sectaire</div>
+        <div class="card-desc">Participation au congrès Prisme organisé par l'Association pour la Science et la Transmission de l'Esprit Critique — une journée entière dédiée aux dérives sectaires, animée par Thomas C. Durand et Vled Tapas (La Tronche en Biais).</div>
+        <div class="card-desc">La rencontre réunissait scientifiques et personnes rescapées, avec traduction intégrale en langue des signes française. Je suis intervenu lors de la table ronde n°2.</div>
+        <img class="card-img" src="https://antoninatger.com/wp-content/uploads/2025/12/image-1.png" alt="Congrès Prisme" loading="lazy">
+      </div>
+      <div class="wide-right">
+        <div class="embed-wrap" style="margin-top: 8px;">
+          <iframe src="https://www.youtube.com/embed/Ovo8ml58CQ4?si=WBqv83wmgLBoZVYs&start=10189" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy" title="Congrès Prisme"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complots et cinéma -->
+    <div class="featured-card wide">
+      <div class="wide-left">
+        <div class="card-meta">
+          <span class="card-tag">Émission · RageBait</span>
+          <span class="card-date">27 nov. 2025</span>
+        </div>
+        <div class="card-title">Complots &amp; <em>cinéma</em></div>
+        <div class="card-desc">Invité à l'émission RageBait aux côtés de Charlie Danger, Regelegorila et Mr Paf pour parler de films et de complotisme : pourquoi les théories du complot s'avèrent presque toujours vraies dans la fiction ? Pourquoi le complotiste finit-il par détenir la vérité ?</div>
+        <img class="card-img" src="https://antoninatger.com/wp-content/uploads/2025/12/image.png" alt="RageBait émission" loading="lazy">
+      </div>
+      <div class="wide-right">
+        <div class="embed-wrap" style="margin-top: 8px;">
+          <iframe src="https://www.youtube.com/embed/g1LgqCQErjA?si=1tdXVWS6j01QirZC" allowfullscreen loading="lazy" title="Complots et cinéma RageBait"></iframe>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /featured-grid -->
+
+  <!-- ── AUTRES INTERVENTIONS ────────────────────── -->
+  <div class="section-label"><span>Autres interventions</span></div>
+
+  <div class="others-grid">
+
+    <!-- Projet Utopia part. 1 -->
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Podcast · Projet Utopia</div>
+      <div class="mini-title">Esprit critique et fiction, part. 1</div>
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/ZEMtp9dR5Qk?start=4" allowfullscreen loading="lazy" title="Esprit critique et fiction part 1"></iframe>
+      </div>
+    </div>
+
+    <!-- Projet Utopia part. 2 -->
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Podcast · Projet Utopia</div>
+      <div class="mini-title">Esprit critique et fiction, part. 2</div>
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/9rwuhV0703k" allowfullscreen loading="lazy" title="Esprit critique et fiction part 2"></iframe>
+      </div>
+    </div>
+
+    <!-- Debatology -->
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Podcast · Debatology · 2 nov. 2025</div>
+      <div class="mini-title">Comment parler aux complotistes ?</div>
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/2RdFvWQHHRc" allowfullscreen loading="lazy" title="Comment parler aux complotistes"></iframe>
+      </div>
+    </div>
+
+    <!-- Les Voix de la Tech -->
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Podcast · Les Voix de la Tech</div>
+      <div class="mini-title">L'affaire Luc Julia</div>
+      <div class="mini-desc">Avec Benjamin Vincent — émission iWeek.</div>
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/8YpMCKZIVnY?start=830" allowfullscreen loading="lazy" title="L'affaire Luc Julia"></iframe>
+      </div>
+    </div>
+
+    <!-- Mystère Utopia -->
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Podcast · Mystère Utopia</div>
+      <div class="mini-title">Littérature &amp; complotisme</div>
+      <div class="mini-desc">Esprit critique et fiction — une conversation sur les liens entre narration et pensée critique.</div>
+      <a class="mini-link" href="https://smartlink.ausha.co/projet-utopia-2/esprit-critique-et-fiction-part-1-antonin-atger" target="_blank" rel="noopener">Écouter l'épisode</a>
+    </div>
+
+    <!-- Val d'Oise -->
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Conférence · Département 95</div>
+      <div class="mini-title">Fake News — Département du Val d'Oise</div>
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/XnZCw0Tsgnc" allowfullscreen loading="lazy" title="Val d'Oise Fake News"></iframe>
+      </div>
+    </div>
+
+    <!-- ISCPA Lyon -->
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Colloque · ISCPA Lyon</div>
+      <div class="mini-title">Désinformation, au-delà de la Fake News</div>
+      <div class="mini-desc">Colloque « Ficelles invisibles » — déconstruire les mécanismes de la désinformation.</div>
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/qHw-_LPoWE4" allowfullscreen loading="lazy" title="ISCPA Lyon ficelles invisibles"></iframe>
+      </div>
+    </div>
+
+    <!-- HEP Lyon -->
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Conférence · HEP Lyon</div>
+      <div class="mini-title">Fake News — HEP de Lyon</div>
+      <div class="mini-desc">Intervention à partir de 11:29.</div>
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/adZvJtXzHxQ" allowfullscreen loading="lazy" title="HEP Lyon"></iframe>
+      </div>
+    </div>
+
+    <!-- Drôme -->
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Conférence · Département 26</div>
+      <div class="mini-title">Harcèlement — Département de la Drôme</div>
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/Zo4jnL5C-ZE" allowfullscreen loading="lazy" title="Drôme harcèlement"></iframe>
+      </div>
+    </div>
+
+    <!-- Rencontres Esprit Critique -->
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Conférence · Rencontres EC</div>
+      <div class="mini-title">Fiction &amp; complotisme</div>
+      <div class="mini-desc">Rencontres de l'Esprit Critique — sur les liens entre récit fictionnel et pensée conspirationniste.</div>
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/EIxKPIHPSHI?si=xP66FPbea_-z2ObE" allowfullscreen loading="lazy" title="Rencontres Esprit Critique"></iframe>
+      </div>
+    </div>
+
+    <!-- Fun Radio -->
+    <div class="mini-card funradio">
+      <div class="funradio-inner">
+        <div class="card-tag" style="align-self:start">Radio · Fun Radio</div>
+        <div class="mini-title">Passages sur Fun Radio</div>
+        <div class="mini-desc">Deux interventions sur Fun Radio.</div>
+        <div class="embed-mini">
+          <iframe src="https://www.youtube.com/embed/yVz9NSYMa_8" allowfullscreen loading="lazy" title="Fun Radio 1"></iframe>
+        </div>
+      </div>
+      <div class="funradio-inner" style="margin-top: auto; padding-top: 28px;">
+        <div class="embed-mini" style="aspect-ratio: 4/3; padding-top: 0; height: 100%; min-height: 160px; position: relative;">
+          <iframe src="https://www.youtube.com/embed/HBzKJf-RPh4" allowfullscreen loading="lazy" title="Fun Radio 2" style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /others-grid -->
+
+  <!-- ── 2023 ──────────────────────────────────────── -->
+  <div class="section-label"><span>2023</span></div>
+
+  <div class="others-grid" style="grid-template-columns: 1fr 1fr;">
+
+    <div class="mini-card">
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/5OPtOeZEbxQ" allowfullscreen loading="lazy" title="Intervention 2023 - 1"></iframe>
+      </div>
+    </div>
+
+    <div class="mini-card">
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/ATvUcZtsS2g" allowfullscreen loading="lazy" title="Intervention 2023 - 2"></iframe>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── NUIT ZÉTÉTIQUE ─────────────────────────────── -->
+  <div class="section-label"><span>Nuit Zététique · La Tronche en Biais</span></div>
+
+  <div class="others-grid" style="grid-template-columns: 1fr 1fr;">
+
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Table ronde</div>
+      <div class="mini-title">Science et politique : indépendance ou instrumentalisation ?</div>
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/snlQR0LdPK4?si=cjdvWr5ypNeFYsw8&start=4536" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy" title="Nuit Zététique — Science et politique"></iframe>
+      </div>
+    </div>
+
+    <div class="mini-card">
+      <div class="card-tag" style="align-self:start">Table ronde</div>
+      <div class="mini-title">Humour, satire, fiction : des armes au service de la science ?</div>
+      <div class="embed-mini">
+        <iframe src="https://www.youtube.com/embed/snlQR0LdPK4?si=FJqJl8rsH2mHFDVY&start=17886" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy" title="Nuit Zététique — Humour satire fiction"></iframe>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /wrap -->
+</body>
+</html>
