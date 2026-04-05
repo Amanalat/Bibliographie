@@ -362,9 +362,319 @@
   .footer-info a { color: var(--accent); text-decoration: none; }
   .footer-info a:hover { text-decoration: underline; }
 
+  /* ── New sections ── */
+  .section-block {
+    margin: 44px 24px 0;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 20px;
+  }
+  .section-heading span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .section-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Photo gallery ── */
+  .photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 8px;
+  }
+
+  .photo-thumb {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #111;
+  }
+
+  .photo-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s ease, opacity .3s;
+    opacity: .87;
+  }
+
+  .photo-thumb:hover img {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  .credit-badge {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 10px 8px;
+    background: linear-gradient(transparent, rgba(0,0,0,.62));
+    font-size: 10px;
+    color: rgba(255,255,255,.85);
+    font-style: italic;
+    pointer-events: none;
+  }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,.93);
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox.active { display: flex; }
+
+  .lb-img-wrap {
+    position: relative;
+    max-width: min(90vw, 960px);
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #lb-img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 4px;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  }
+
+  .lb-credit {
+    position: absolute;
+    bottom: -28px;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,.55);
+    font-style: italic;
+  }
+
+  .lb-close {
+    position: fixed;
+    top: 18px; right: 20px;
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .lb-close:hover { background: rgba(255,255,255,.24); }
+
+  .lb-prev, .lb-next {
+    position: fixed;
+    top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.15);
+    color: #fff;
+    font-size: 26px;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,.22); }
+  .lb-prev { left: 14px; }
+  .lb-next { right: 14px; }
+
+  .lb-counter {
+    position: fixed;
+    bottom: 18px;
+    left: 50%; transform: translateX(-50%);
+    font-size: 11px;
+    color: rgba(255,255,255,.4);
+    letter-spacing: .12em;
+  }
+
+  /* ── Teaching cards ── */
+  .teaching-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 12px;
+  }
+
+  .teach-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .teach-card img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+  }
+
+  .teach-info {
+    padding: 18px 20px;
+    flex: 1;
+  }
+
+  .teach-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 5px;
+    line-height: 1.25;
+  }
+
+  .teach-sub {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .teach-card--text {
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    justify-content: center;
+  }
+
+  /* ── Collaboration section ── */
+  .collab-intro {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin-bottom: 24px;
+    padding: 18px 22px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-light);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .project-block {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .project-inner {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .project-text {
+    padding: 28px 28px 24px;
+  }
+
+  .project-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.15;
+  }
+
+  .project-desc {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+
+  .award-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fffbeb;
+    border: 1px solid #f4c430;
+    color: #7a5c00;
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-top: 18px;
+  }
+
+  .award-photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 16px 22px 22px;
+    border-top: 1px solid var(--border);
+    background: #faf8f5;
+  }
+
+  .award-photos figure {
+    overflow: hidden;
+    border-radius: 4px;
+    aspect-ratio: 4/3;
+  }
+
+  .award-photos figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .3s, opacity .25s;
+    opacity: .9;
+  }
+
+  .award-photos figure:hover img {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+
+  .project-img-wrap {
+    overflow: hidden;
+  }
+
+  .project-img {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+
   @media (max-width: 600px) {
     .card-tags { display: none; }
     .card-inner { padding-left: 26px; }
+    .project-inner { grid-template-columns: 1fr; }
+    .project-img-wrap { display: none; }
+    .teaching-cards { grid-template-columns: 1fr; }
+    .award-photos { grid-template-columns: 1fr 1fr; }
+    .lb-prev { left: 6px; }
+    .lb-next { right: 6px; }
   }
 </style>
 </head>
@@ -708,6 +1018,118 @@
 
 </div>
 
+<!-- ── INTERVENTIONS SCOLAIRES — GALERIE ── -->
+<div class="section-block">
+  <div class="section-heading"><span>Interventions scolaires</span></div>
+  <div class="photo-gallery">
+    <div class="photo-thumb" onclick="openLightbox(0)">
+      <img src="https://antoninatger.com/wp-content/uploads/2025/06/1000065401.jpg" alt="Intervention scolaire" loading="lazy">
+    </div>
+    <div class="photo-thumb" onclick="openLightbox(1)">
+      <img src="https://antoninatger.com/wp-content/uploads/2025/11/medijska-pismenost-antonin-atger-croatie.jpg" alt="Médijska pismenost — Croatie" loading="lazy">
+    </div>
+    <div class="photo-thumb" onclick="openLightbox(2)">
+      <img src="https://antoninatger.com/wp-content/uploads/2025/03/img_20241108_095801.jpg" alt="Intervention scolaire 2024" loading="lazy">
+    </div>
+    <div class="photo-thumb" onclick="openLightbox(3)">
+      <img src="https://antoninatger.com/wp-content/uploads/2022/09/photo-4_flou.jpg" alt="Intervention scolaire" loading="lazy">
+    </div>
+    <div class="photo-thumb" onclick="openLightbox(4)">
+      <img src="https://antoninatger.com/wp-content/uploads/2024/05/20240503_1532306835844626328064646.jpg" alt="Intervention scolaire 2024" loading="lazy">
+    </div>
+    <div class="photo-thumb" onclick="openLightbox(5)">
+      <img src="https://antoninatger.com/wp-content/uploads/2022/11/img_20221105_115139_534-1.webp" alt="Intervention scolaire 2022" loading="lazy">
+    </div>
+    <div class="photo-thumb" onclick="openLightbox(6)">
+      <img src="https://antoninatger.com/wp-content/uploads/2023/12/20231222_1431498427290980719176928.jpg" alt="Intervention scolaire 2023" loading="lazy">
+    </div>
+    <div class="photo-thumb" onclick="openLightbox(7)">
+      <img src="https://antoninatger.com/wp-content/uploads/2023/02/20211210_135632.jpg" alt="Intervention scolaire" loading="lazy">
+    </div>
+    <div class="photo-thumb" onclick="openLightbox(8)">
+      <img src="https://antoninatger.com/wp-content/uploads/2023/11/3-2-831621556-e1700956034704.jpg" alt="Intervention scolaire 2023" loading="lazy">
+    </div>
+    <div class="photo-thumb" onclick="openLightbox(9)">
+      <img src="https://antoninatger.com/wp-content/uploads/2023/11/2-450215437-e1700955923614.jpg" alt="Intervention scolaire 2023" loading="lazy">
+    </div>
+    <div class="photo-thumb" onclick="openLightbox(10)">
+      <img src="https://antoninatger.com/wp-content/uploads/2023/08/1-college-jean-moulin-trevoux-3.jpg" alt="Collège Jean Moulin — Trévoux" loading="lazy">
+      <div class="credit-badge">© Guillaume Atger</div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <button class="lb-close" onclick="closeLightbox()">×</button>
+  <button class="lb-prev" onclick="lbNavigate(-1)">&#8249;</button>
+  <div class="lb-img-wrap">
+    <img id="lb-img" src="" alt="">
+    <div class="lb-credit" id="lb-credit"></div>
+  </div>
+  <button class="lb-next" onclick="lbNavigate(1)">&#8250;</button>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<!-- ── ENSEIGNEMENT PRODIGUÉ ── -->
+<div class="section-block">
+  <div class="section-heading"><span>Enseignement prodigué</span></div>
+  <div class="teaching-cards">
+    <div class="teach-card">
+      <img src="https://antoninatger.com/wp-content/uploads/2024/01/20220929_174617.jpg" alt="Cours Sup de Pub — Narrative Design" loading="lazy">
+      <div class="teach-info">
+        <div class="teach-title">Narrative Design</div>
+        <div class="teach-sub">Sup de Pub &middot; 2023</div>
+      </div>
+    </div>
+    <div class="teach-card teach-card--text">
+      <div class="teach-info">
+        <div class="teach-title">Géopolitique du monde contemporain</div>
+        <div class="teach-sub">MASNI &middot; 2023 &ndash; aujourd'hui</div>
+      </div>
+    </div>
+    <div class="teach-card teach-card--text">
+      <div class="teach-info">
+        <div class="teach-title">Rhétorique</div>
+        <div class="teach-sub">HEIP de Lyon</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── COLLABORATION INSTITUTIONNELLE ── -->
+<div class="section-block" style="margin-bottom: 44px;">
+  <div class="section-heading"><span>Collaboration institutionnelle</span></div>
+
+  <p class="collab-intro">En partenariat avec <strong>La Métropole de Lyon</strong> et le <strong>laboratoire Erasme</strong>.</p>
+
+  <div class="project-block">
+    <div class="project-inner">
+      <div class="project-text">
+        <div class="project-tag">Projet pédagogique pluriannuel</div>
+        <div class="project-title">Self Data</div>
+        <div class="project-desc">Nous suivons pendant un an plusieurs classes, du CM1 au lycée, dans le projet narratif suivant : nous imaginons que nous envoyons 10 téléphones dans le passé pour aider les résistants de 1942. Mais à cette époque, la préservation des données personnelles est une question de vie ou de mort.</div>
+        <div class="project-desc" style="margin-top:10px;">Durant un an, les élèves vont donc aider les &laquo;&nbsp;résistants&nbsp;&raquo; du passé à faire attention aux informations qu'ils divulguent, à travers des missions, des énigmes à résoudre et des collaborations. Ceci, bien sûr, les aidera à être eux-mêmes plus vigilants&nbsp;!</div>
+        <div class="award-badge">&#127942;&ensp;Prix Voices Award &mdash; Zagreb, Croatie, 2025</div>
+      </div>
+      <div class="project-img-wrap">
+        <img class="project-img" src="https://antoninatger.com/wp-content/uploads/2023/12/college-balzac-self-data.png" alt="Self Data — Collège Balzac" loading="lazy">
+      </div>
+    </div>
+    <div class="award-photos">
+      <figure>
+        <img src="https://antoninatger.com/wp-content/uploads/2025/03/img-20250228-wa0008-edited.jpg" alt="Voices Award — Zagreb 2025" loading="lazy">
+      </figure>
+      <figure>
+        <img src="https://antoninatger.com/wp-content/uploads/2025/03/signal-2025-03-05-205515-edited.jpeg" alt="Voices Award — Zagreb 2025" loading="lazy">
+      </figure>
+      <figure>
+        <img src="https://antoninatger.com/wp-content/uploads/2025/03/img-20250301-wa0005-edited-1.jpg" alt="Voices Award — Zagreb 2025" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</div>
+
 <!-- Ils m'ont fait confiance -->
 <div class="trust-section" id="trust">
   <div class="trust-toggle" onclick="toggleTrust()">
@@ -773,6 +1195,57 @@
   function toggleTrust() {
     document.getElementById('trust').classList.toggle('open');
   }
+
+  // ── Lightbox ──
+  const lbPhotos = [
+    { src: 'https://antoninatger.com/wp-content/uploads/2025/06/1000065401.jpg', credit: '' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2025/11/medijska-pismenost-antonin-atger-croatie.jpg', credit: '' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2025/03/img_20241108_095801.jpg', credit: '' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2022/09/photo-4_flou.jpg', credit: '' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2024/05/20240503_1532306835844626328064646.jpg', credit: '' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2022/11/img_20221105_115139_534-1.webp', credit: '' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2023/12/20231222_1431498427290980719176928.jpg', credit: '' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2023/02/20211210_135632.jpg', credit: '' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2023/11/3-2-831621556-e1700956034704.jpg', credit: '' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2023/11/2-450215437-e1700955923614.jpg', credit: '' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2023/08/1-college-jean-moulin-trevoux-3.jpg', credit: '© Guillaume Atger' },
+  ];
+  let lbIndex = 0;
+
+  function openLightbox(i) {
+    lbIndex = i;
+    renderLightbox();
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOutside(e) {
+    if (e.target.id === 'lightbox') closeLightbox();
+  }
+
+  function lbNavigate(dir) {
+    lbIndex = (lbIndex + dir + lbPhotos.length) % lbPhotos.length;
+    renderLightbox();
+  }
+
+  function renderLightbox() {
+    const p = lbPhotos[lbIndex];
+    document.getElementById('lb-img').src = p.src;
+    document.getElementById('lb-credit').textContent = p.credit;
+    document.getElementById('lb-counter').textContent = (lbIndex + 1) + '\u00a0/\u00a0' + lbPhotos.length;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'ArrowRight') lbNavigate(1);
+    if (e.key === 'ArrowLeft')  lbNavigate(-1);
+    if (e.key === 'Escape')     closeLightbox();
+  });
 </script>
 
 </body>
