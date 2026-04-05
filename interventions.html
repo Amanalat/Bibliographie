@@ -1311,13 +1311,17 @@
   function openLightbox(i) {
     lbIndex = i;
     renderLightbox();
-    document.getElementById('lightbox').classList.add('active');
+    const lb = document.getElementById('lightbox');
+    document.body.appendChild(lb); // échappe tout conteneur transformé ou scrollable
+    lb.classList.add('active');
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   }
 
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('active');
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
 
   function closeLightboxOutside(e) {
