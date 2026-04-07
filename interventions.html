@@ -397,6 +397,42 @@
   .footer-info a { color: var(--accent); text-decoration: none; }
   .footer-info a:hover { text-decoration: underline; }
 
+  /* ── Testimonials ── */
+  .testimonial-card {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    padding: 32px 32px 26px 40px;
+  }
+  .testimonial-quote {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    opacity: .35;
+    pointer-events: none;
+  }
+  .testimonial-text {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    margin: 0 0 18px;
+    padding: 0;
+    border: none;
+  }
+  .testimonial-author {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
   /* ── New sections ── */
   .section-block {
     margin: 44px 24px 0;
@@ -1378,6 +1414,15 @@
         <img src="https://antoninatger.com/wp-content/uploads/2025/03/img-20250301-wa0005-edited-1.jpg" alt="Voices Award — Zagreb 2025" loading="lazy">
       </figure>
     </div>
+  </div>
+</div>
+
+<div class="section-block" style="margin-bottom: 44px; margin-top: 44px;">
+  <div class="section-heading"><span>Retours des professeurs</span></div>
+  <div class="testimonial-card">
+    <div class="testimonial-quote">&ldquo;</div>
+    <blockquote class="testimonial-text"><em>Excellente intervention, parfaitement limpide, structurée, et essentielle pour les élèves qui, bien souvent, manquent cruellement d'esprit critique face aux sources d'informations auxquelles ils sont confrontés sur les réseaux sociaux.<br><br>J'ai été particulièrement sensible à la distinction faite entre corrélation et causalité. Cette distinction n'est souvent pas du tout évidente pour beaucoup d'adultes et, a fortiori, pour des adolescents.</em></blockquote>
+    <div class="testimonial-author">Samuel B. &mdash; Lycée Charles de Gaulle</div>
   </div>
 </div>
 
