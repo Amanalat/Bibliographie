@@ -530,6 +530,61 @@ a:hover { text-decoration: underline; }
 .bio-section p + p {
   margin-top: 18px;
 }
+
+/* ── Interventions ── */
+.interventions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 520px) {
+  .interventions-grid { grid-template-columns: 1fr; }
+}
+
+.intervention-card {
+  border: 1px solid #e0e0e0;
+  padding: 20px 24px;
+  background: #fafafa;
+  margin-bottom: 16px;
+}
+
+.intervention-card--featured {
+  background: #f7f5f1;
+  border-color: #d0cbc3;
+  grid-column: 1 / -1;
+}
+
+.intervention-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.intervention-card p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+}
+
+.intervention-card p + p { margin-top: 10px; }
+
+.intervention-card .t-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #b5341c;
+  text-decoration: none;
+}
+
+.intervention-card .t-link:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -550,6 +605,44 @@ a:hover { text-decoration: underline; }
     <p>Je suis tout d'abord écrivain de science-fiction. J'ai écrit la série <em>Interfeel</em>, dans laquelle j'imagine un nouveau réseau social qui permet de partager ses émotions. Le monde s'est transformé suite à cette innovation. Désormais, plus rien n'est privé, pas même ce que l'on ressent secrètement.</p>
     <p>Sur mes études, après un premier master en sciences politiques, la crise du Covid et le déferlement de désinformations complotistes apparu sur les réseaux m'ont donné envie d'effectuer un second master en psychologie. Influencé par ce qui m'avait poussé à ma reprise universitaire, j'ai décidé de concentrer ma thèse sur ces liens entre psychologie, complotisme et politique — revenant ainsi à mon cursus d'origine. Ma thèse se concentre sur cette envie de comprendre les liens multiples et parfois dangereux entre théorie du complot et stratégie politique.</p>
     <p>Ces recherches m'ont poussé à me renseigner sur la désinformation en ligne et sur les réseaux sociaux. Ce sont ces connaissances que j'utilise et vulgarise auprès des jeunes et des plus jeunes lors de mes interventions.</p>
+  </div>
+
+  <!-- ══════════ INTERVENTIONS ══════════ -->
+
+  <div class="section-break"><span>Interventions</span></div>
+
+  <h3 class="subsection-h">Interventions principales</h3>
+
+  <div class="interventions-grid">
+    <div class="intervention-card">
+      <h4 class="intervention-title">Fake News et esprit critique</h4>
+      <p>Une intervention pour apprendre à identifier les fausses informations, comprendre leurs mécanismes de diffusion et développer les réflexes de vérification essentiels à l'ère numérique.</p>
+    </div>
+    <div class="intervention-card">
+      <h4 class="intervention-title">Désinformation, au delà de la Fake News</h4>
+      <p>Une exploration des formes de manipulation de l'information qui dépassent la simple fausse nouvelle : décontextualisation, biais cognitifs, propagande algorithmique et stratégies politiques.</p>
+    </div>
+    <div class="intervention-card">
+      <h4 class="intervention-title">Rhétorique et esprit critique</h4>
+      <p>Une initiation aux techniques rhétoriques et aux outils de l'argumentation, pour apprendre à déconstruire un discours, identifier les sophismes et affûter sa pensée critique.</p>
+    </div>
+    <div class="intervention-card">
+      <h4 class="intervention-title">Ateliers d'écriture</h4>
+      <p>Des ateliers créatifs autour de l'écriture de nouvelles et de science-fiction, pour explorer par l'imaginaire les enjeux du futur numérique et de la liberté d'expression.</p>
+    </div>
+  </div>
+
+  <h3 class="subsection-h">Interventions supplémentaires</h3>
+
+  <div class="intervention-card intervention-card--featured">
+    <h4 class="intervention-title">Self Data — Classes Culturelles Numériques</h4>
+    <div class="prix-row" style="margin-bottom: 14px; margin-top: 10px;">
+      <span class="prix-tag">🏆 Prix Européen Voices 2025 — Data Wellbeing</span>
+    </div>
+    <p>Dans le cadre des <strong>Classes Culturelles Numériques</strong> (un projet Erasme / Grand Lyon), j'ai imaginé avec plusieurs classes de la Métropole de Lyon une histoire de science-fiction : nous parvenons à envoyer un téléphone portable en <strong>1942</strong> pour aider la résistance lyonnaise durant la Seconde Guerre mondiale. Les élèves accompagnent Alberte Bourde, résistante, pour l'aider à utiliser son téléphone et à protéger ses données — apprenant par là-même à faire attention à leurs propres informations en ligne.</p>
+    <p>Au programme : une intervention en classe pour présenter l'histoire, des résolutions d'énigmes, et la création d'un projet artistique en fin d'année pour que les élèves transmettent ce qu'ils ont appris. Cette intervention est reconduite pour 2024–2025, en collaboration avec le <strong>laboratoire ERASME</strong> et le <strong>Réseau Canopé</strong>.</p>
+    <p>C'est ce travail collectif qui a été récompensé en mars 2025 par le <strong>prix européen Voices</strong> dans la catégorie « Data Wellbeing », lors du festival VOICES à Zagreb — festival réunissant chaque année les acteurs européens du journalisme et de la lutte contre la manipulation de l'information, et récompensant 10 profils pour leur investissement dans ce domaine. Ces deux jours de festival ont permis de tisser des liens forts avec des chercheurs, des journalistes et des acteurs européens de l'éducation aux médias.</p>
+    <a class="t-link" href="https://classeculturellenumerique.org/projets/self-data/" target="_blank" rel="noopener">Plus d'informations sur le projet →</a>
   </div>
 
   <!-- ══════════ INTERFEEL ══════════ -->
