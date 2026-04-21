@@ -585,6 +585,106 @@ a:hover { text-decoration: underline; }
 }
 
 .intervention-card .t-link:hover { text-decoration: underline; }
+
+/* ── Séparateur entre groupes d'interventions ── */
+.intv-group-sep {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 48px 0 36px;
+}
+
+.intv-group-sep::before, .intv-group-sep::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: #e8e4dc;
+}
+
+.intv-group-sep span {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #bbb;
+  white-space: nowrap;
+}
+
+/* ── Formation enseignant ── */
+.formation-block {
+  background: #f0ede8;
+  border-left: 4px solid #b5341c;
+  padding: 32px 36px;
+  margin-bottom: 16px;
+}
+
+.formation-block .intervention-title {
+  font-size: 1.15rem;
+}
+
+/* ── Informations pratiques ── */
+.info-pratiques {
+  background: #f7f5f1;
+  border: 1px solid #d0cbc3;
+  padding: 36px 40px;
+  margin: 40px 0 0;
+}
+
+.info-pratiques h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #d0cbc3;
+}
+
+.info-pratiques p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.75;
+}
+
+.info-pratiques p + p { margin-top: 12px; }
+
+/* ── Fakemètre ── */
+.fakemetre-zone {
+  background: #111;
+  color: #fff;
+  padding: 56px 0;
+  margin-top: 72px;
+}
+
+.fakemetre-zone .page-wrap {}
+
+.fakemetre-header {
+  margin-bottom: 32px;
+}
+
+.fakemetre-header .eyebrow {
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #b5341c;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.fakemetre-header h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.fakemetre-desc {
+  font-size: 16px;
+  color: #aaa;
+  line-height: 1.75;
+  max-width: 600px;
+}
 </style>
 </head>
 <body>
@@ -626,13 +726,14 @@ a:hover { text-decoration: underline; }
       <h4 class="intervention-title">Rhétorique et esprit critique</h4>
       <p>Une initiation aux techniques rhétoriques et aux outils de l'argumentation, pour apprendre à déconstruire un discours, identifier les sophismes et affûter sa pensée critique.</p>
     </div>
-    <div class="intervention-card">
+    <div class="intervention-card intervention-card--featured">
       <h4 class="intervention-title">Ateliers d'écriture</h4>
       <p>Des ateliers créatifs autour de l'écriture de nouvelles et de science-fiction, pour explorer par l'imaginaire les enjeux du futur numérique et de la liberté d'expression.</p>
     </div>
   </div>
 
-  <h3 class="subsection-h">Interventions supplémentaires</h3>
+  <!-- Séparateur entre principales et supplémentaires -->
+  <div class="intv-group-sep"><span>Interventions supplémentaires</span></div>
 
   <div class="intervention-card intervention-card--featured">
     <h4 class="intervention-title">Self Data — Classes Culturelles Numériques</h4>
@@ -643,6 +744,21 @@ a:hover { text-decoration: underline; }
     <p>Au programme : une intervention en classe pour présenter l'histoire, des résolutions d'énigmes, et la création d'un projet artistique en fin d'année pour que les élèves transmettent ce qu'ils ont appris. Cette intervention est reconduite pour 2024–2025, en collaboration avec le <strong>laboratoire ERASME</strong> et le <strong>Réseau Canopé</strong>.</p>
     <p>C'est ce travail collectif qui a été récompensé en mars 2025 par le <strong>prix européen Voices</strong> dans la catégorie « Data Wellbeing », lors du festival VOICES à Zagreb — festival réunissant chaque année les acteurs européens du journalisme et de la lutte contre la manipulation de l'information, et récompensant 10 profils pour leur investissement dans ce domaine. Ces deux jours de festival ont permis de tisser des liens forts avec des chercheurs, des journalistes et des acteurs européens de l'éducation aux médias.</p>
     <a class="t-link" href="https://classeculturellenumerique.org/projets/self-data/" target="_blank" rel="noopener">Plus d'informations sur le projet →</a>
+  </div>
+
+  <!-- Séparateur avant Formation enseignant -->
+  <div class="intv-group-sep"><span>Formation enseignant</span></div>
+
+  <div class="formation-block">
+    <h4 class="intervention-title">Formation à destination des enseignants</h4>
+    <p>Une formation conçue spécifiquement pour les enseignants souhaitant intégrer l'éducation aux médias et à l'information dans leurs pratiques de classe. Au programme : comprendre les mécanismes de la désinformation, identifier les ressources pédagogiques disponibles, et co-construire des séquences adaptées à leurs élèves.</p>
+  </div>
+
+  <!-- Informations pratiques -->
+  <div class="info-pratiques">
+    <h3>Informations pratiques</h3>
+    <p>Les interventions sont accessibles à partir du cycle 3 (CM1–CM2) jusqu'au lycée, et s'adaptent au niveau et aux besoins de chaque classe. Elles se déroulent généralement sur une demi-journée ou une journée complète, en présentiel.</p>
+    <p>Pour toute demande de réservation, de tarif ou d'information complémentaire, vous pouvez utiliser le formulaire de contact disponible sur ce site.</p>
   </div>
 
   <!-- ══════════ INTERFEEL ══════════ -->
@@ -904,6 +1020,17 @@ a:hover { text-decoration: underline; }
     </div><!-- /timeline -->
 
   </div><!-- /page-wrap -->
+</section>
+
+<!-- ══════════ FAKEMÈTRE ══════════ -->
+<section class="fakemetre-zone">
+  <div class="page-wrap">
+    <header class="fakemetre-header">
+      <span class="eyebrow">Outil pédagogique</span>
+      <h2>Fakemètre</h2>
+    </header>
+    <p class="fakemetre-desc">Un outil interactif pour évaluer la fiabilité d'une information : en quelques étapes guidées, les élèves apprennent à analyser une source, à identifier les signaux d'alerte et à situer une information sur l'échelle de la désinformation.</p>
+  </div>
 </section>
 
 <!-- ══════════ LIGHTBOX ══════════ -->
