@@ -11,15 +11,20 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
 
   /* ── Nav tabs ── */
   .nav-tabs {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    padding: 24px 24px 0;
+    padding: 12px 24px;
     margin-bottom: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
   }
   .nav-tab {
     display: inline-flex;
@@ -822,10 +827,15 @@
 </header>
 
 <nav class="nav-tabs" aria-label="Sections">
+  <span style="font-size:13px;color:var(--ink-soft);white-space:nowrap;align-self:center;">Je recherche une intervention&nbsp;/ formation pour&nbsp;:</span>
   <a class="nav-tab" href="#scolaire"><span class="tab-dot"></span>Scolaire &amp; médiathèque</a>
-  <a class="nav-tab" href="#formation-enseignants"><span class="tab-dot"></span>Formation personnel enseignant</a>
+  <a class="nav-tab" href="#formation-enseignants"><span class="tab-dot"></span>Personnel enseignant</a>
   <a class="nav-tab" href="#formation-entreprise"><span class="tab-dot"></span>Entreprise</a>
 </nav>
+
+<div class="section-block" style="margin-top: 40px; margin-bottom: 0;">
+  <div class="section-heading"><span>Interventions scolaires et en médiathèque</span></div>
+</div>
 
 <div class="cards" id="scolaire">
 
