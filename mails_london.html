@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mails — Londres — Antonin Atger</title>
+<title>Mails · Londres · Antonin Atger</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: Georgia, serif; font-size: 15px; line-height: 1.75; color: #1a1a1a; background: #f4f1ec; padding: 40px 20px 80px; }
@@ -33,6 +33,11 @@
   .btn-copy.copied { background: #e6f4ea; color: #1a7a3c; border-color: #a8d5b5; }
   .btn-mailto { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
   .btn-mailto:hover { background: #333; }
+  .status-group { display: flex; gap: 12px; margin-left: auto; align-items: center; }
+  .status-label { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #888; cursor: pointer; user-select: none; white-space: nowrap; }
+  .status-label input[type=checkbox] { cursor: pointer; accent-color: #1a7a3c; }
+  .mail-card.is-sent { opacity: 0.45; }
+  .mail-card.is-sent .mail-header { background: #2d4a2d; }
 </style>
 </head>
 <body>
@@ -394,14 +399,31 @@ antoninatger.com/interventions</div>
 
 <script>
 (function() {
+  document.querySelectorAll('.mail-body, .mail-meta-value').forEach(function(el) {
+    if (el.textContent.indexOf('—') !== -1) {
+      el.textContent = el.textContent.replace(/— ?/g, '');
+    }
+  });
+
   function extractEmails(text) {
     return (text.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g) || []);
   }
+
+  function updateCardState(card, status) {
+    card.classList.toggle('is-sent', !!status.sent);
+    card.classList.toggle('is-copied', !!status.copied);
+  }
+
   document.querySelectorAll('.mail-card').forEach(function(card) {
     var mailToEl = card.querySelector('.mail-to');
     var subjectEl = card.querySelector('.mail-meta-value');
     var bodyEl = card.querySelector('.mail-body');
     if (!subjectEl || !bodyEl) return;
+
+    var numEl = card.querySelector('.mail-num');
+    var cardId = numEl ? numEl.textContent.trim().toLowerCase().replace(/\s*·\s*/g, '-').replace(/\s+/g, '') : Math.random().toString(36).slice(2);
+    var storageKey = 'mail-status-' + cardId;
+    var status = JSON.parse(localStorage.getItem(storageKey) || '{}');
 
     var emails = mailToEl ? extractEmails(mailToEl.textContent) : [];
     var subject = subjectEl.textContent.trim();
@@ -433,6 +455,30 @@ antoninatger.com/interventions</div>
       actions.appendChild(mailtoLink);
     }
 
+    var statusGroup = document.createElement('div');
+    statusGroup.className = 'status-group';
+
+    function makeCheck(labelText, key) {
+      var lbl = document.createElement('label');
+      lbl.className = 'status-label';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = !!status[key];
+      cb.addEventListener('change', function() {
+        status[key] = cb.checked;
+        localStorage.setItem(storageKey, JSON.stringify(status));
+        updateCardState(card, status);
+      });
+      lbl.appendChild(cb);
+      lbl.appendChild(document.createTextNode(' ' + labelText));
+      return lbl;
+    }
+
+    statusGroup.appendChild(makeCheck('Copié', 'copied'));
+    statusGroup.appendChild(makeCheck('Envoyé', 'sent'));
+    actions.appendChild(statusGroup);
+
+    updateCardState(card, status);
     card.appendChild(actions);
   });
 })();

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mails · Guangzhou · Antonin Atger</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; font-size: 15px; line-height: 1.75; color: #1a1a1a; background: #f4f1ec; padding: 40px 20px 80px; }
+  .page-title { text-align: center; font-size: 2rem; font-weight: 700; color: #111; margin-bottom: 6px; }
+  .page-sub { text-align: center; font-size: 12px; color: #999; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 56px; }
+  .city-divider { display: flex; align-items: center; gap: 16px; margin: 56px auto 32px; max-width: 820px; }
+  .city-divider span { font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #b5341c; white-space: nowrap; }
+  .city-divider::before, .city-divider::after { content: ''; flex: 1; height: 1px; background: #c9c4bb; }
+  .mail-card { background: #fff; border: 1px solid #ddd9d2; border-radius: 8px; max-width: 820px; margin: 0 auto 28px; overflow: hidden; }
+  .mail-header { background: #1a1a1a; color: #fff; padding: 16px 26px; display: flex; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
+  .mail-num { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #b5341c; margin-top: 3px; white-space: nowrap; }
+  .mail-dest { font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: 3px; }
+  .mail-to { font-size: 11.5px; color: #aaa; font-family: monospace; }
+  .mail-meta { padding: 12px 26px; background: #faf8f5; border-bottom: 1px solid #eae6e0; display: flex; gap: 20px; flex-wrap: wrap; }
+  .mail-meta-item { display: flex; gap: 8px; align-items: baseline; }
+  .mail-meta-label { font-size: 9.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #bbb; white-space: nowrap; }
+  .mail-meta-value { font-size: 13px; color: #444; font-style: italic; }
+  .mail-body { padding: 26px 32px 30px; font-size: 14px; line-height: 1.9; color: #222; white-space: pre-wrap; font-family: Georgia, serif; }
+  .lang-badge { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .lang-fr { background: #e8f0fe; color: #1a56b8; }
+  .lang-en { background: #e6f4ea; color: #1a7a3c; }
+  .mail-actions { padding: 12px 26px 14px; display: flex; gap: 10px; border-top: 1px solid #eae6e0; background: #faf8f5; }
+  .btn-copy, .btn-mailto { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 5px; font-size: 11.5px; font-weight: 600; letter-spacing: .05em; cursor: pointer; text-decoration: none; border: 1px solid; transition: background .15s, color .15s; font-family: Georgia, serif; }
+  .btn-copy { background: #f0ede8; color: #555; border-color: #ddd9d2; }
+  .btn-copy:hover { background: #e5e0d8; }
+  .btn-copy.copied { background: #e6f4ea; color: #1a7a3c; border-color: #a8d5b5; }
+  .btn-mailto { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+  .btn-mailto:hover { background: #333; }
+  .status-group { display: flex; gap: 12px; margin-left: auto; align-items: center; }
+  .status-label { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #888; cursor: pointer; user-select: none; white-space: nowrap; }
+  .status-label input[type=checkbox] { cursor: pointer; accent-color: #1a7a3c; }
+  .mail-card.is-sent { opacity: 0.45; }
+  .mail-card.is-sent .mail-header { background: #2d4a2d; }
+</style>
+</head>
+<body>
+
+<h1 class="page-title">Mails de prospection</h1>
+<p class="page-sub">Guangzhou · Antonin Atger · Juin 2026</p>
+
+<div class="city-divider"><span>Guangzhou</span></div>
+
+<!-- GZ 01 – Alliance Française -->
+<div class="mail-card">
+  <div class="mail-header">
+    <div class="mail-num">GZ · 01</div>
+    <div style="flex:1">
+      <div class="mail-dest">Alliance Française de Guangzhou</div>
+      <div class="mail-to">guangzhou@afinchine.cn</div>
+    </div>
+    <span class="lang-badge lang-fr">Français</span>
+  </div>
+  <div class="mail-meta">
+    <div class="mail-meta-item"><span class="mail-meta-label">Objet</span><span class="mail-meta-value">Proposition d'intervention — Fake News & ateliers d'écriture</span></div>
+  </div>
+  <div class="mail-body">Bonjour,
+
+Je m'appelle Antonin Atger, je suis écrivain et doctorant en sciences cognitives, spécialisé dans la désinformation et les mécanismes du cerveau face aux Fake News. Je serai dans la région en juin — j'interviens notamment au Lycée Français International Victor-Segalen à Hong Kong — et me permets de vous contacter pour vous proposer une collaboration.
+
+J'effectue des conférences sur les Fake News depuis plusieurs années, en médiathèques et en établissements scolaires — 86 établissements et 36 médiathèques en France à ce jour. J'explique pourquoi notre cerveau est si sensible aux infox, avec des illusions d'optique et des exemples concrets, et je donne des outils pratiques pour vérifier une information en ligne. C'est interactif, et les publics accrochent facilement. Voici une présentation vidéo : https://youtu.be/vUlKdtYcJPs
+
+J'effectue aussi des ateliers d'écriture, pour tout âge, et des conférences sur la rhétorique et l'art de convaincre.
+
+L'Alliance Française est souvent le premier endroit où ce que je propose trouve son public naturel — francophiles, étudiants, communauté expatriée. Ce serait un plaisir d'y contribuer lors de mon passage.
+
+N'hésitez pas si vous avez des questions, ou pour convenir d'un échange.
+
+Je vous souhaite une excellente journée,
+Bien à vous,
+
+---
+Antonin Atger
+Mes interventions : antoninatger.com/interventions
+Jeu pédagogique FakeMètre : antoninatger.com/jeux-pedagogiques/</div>
+</div>
+
+<!-- GZ 02 – Consulat / SCAC -->
+<div class="mail-card">
+  <div class="mail-header">
+    <div class="mail-num">GZ · 02</div>
+    <div style="flex:1">
+      <div class="mail-dest">Consulat général de France à Guangzhou — Service Culturel (SCAC)</div>
+      <div class="mail-to">cad.canton-amba@diplomatie.gouv.fr</div>
+    </div>
+    <span class="lang-badge lang-fr">Français</span>
+  </div>
+  <div class="mail-meta">
+    <div class="mail-meta-item"><span class="mail-meta-label">Objet</span><span class="mail-meta-value">Proposition de conférence — désinformation & esprit critique, juin 2026</span></div>
+  </div>
+  <div class="mail-body">Madame, Monsieur,
+
+Je m'appelle Antonin Atger, je suis écrivain français (trilogie Interfeel, CLA Books Awards 2019, Prix Chimère 2019) et doctorant en sciences cognitives, spécialisé dans la désinformation. Je serai dans la région en juin — j'effectue notamment des interventions au Lycée Français International Victor-Segalen à Hong Kong — et me permets de vous contacter pour vous proposer de contribuer à votre programmation culturelle.
+
+J'effectue des conférences sur les Fake News et les mécanismes du cerveau depuis plusieurs années — 86 établissements scolaires et 36 médiathèques en France, une conférence TEDx, et une participation au congrès Prisme (avec Thomas C. Durand et Vled Tapas de La Tronche en Biais) sur les dérives de la désinformation. Voici une présentation vidéo de mon intervention : https://youtu.be/vUlKdtYcJPs
+
+J'effectue également des ateliers d'écriture et des conférences sur la rhétorique et l'art de convaincre. Dans le contexte informationnel actuel, ces sujets trouvent un écho particulier auprès des communautés francophones à l'étranger.
+
+Le consulat de Guangzhou couvrant une zone géographique très large — Guangdong, Guangxi, Fujian — je serais heureux d'échanger avec vous sur la façon dont une intervention pourrait s'intégrer dans votre programmation, que ce soit pour la communauté locale ou en partenariat avec des institutions cantonaises.
+
+Bien cordialement,
+
+---
+Antonin Atger
+antoninatger.com/interventions</div>
+</div>
+
+<!-- GZ 03 – CCI France Chine -->
+<div class="mail-card">
+  <div class="mail-header">
+    <div class="mail-num">GZ · 03</div>
+    <div style="flex:1">
+      <div class="mail-dest">CCI France Chine — Bureau Guangzhou</div>
+      <div class="mail-to">guangzhou@ccifc.org</div>
+    </div>
+    <span class="lang-badge lang-fr">Français</span>
+  </div>
+  <div class="mail-meta">
+    <div class="mail-meta-item"><span class="mail-meta-label">Objet</span><span class="mail-meta-value">Proposition de formation — désinformation et arnaques en ligne en entreprise</span></div>
+  </div>
+  <div class="mail-body">Bonjour,
+
+Je m'appelle Antonin Atger, je suis écrivain et doctorant en sciences cognitives, spécialisé dans les mécanismes de la désinformation. Je serai dans la région en juin — j'interviens notamment au Lycée Français International Victor-Segalen à Hong Kong — et me permets de vous contacter pour vous proposer une formation pour vos membres.
+
+Outre mes interventions en milieu scolaire, j'effectue depuis plusieurs années des formations en entreprise sur la désinformation et les arnaques en ligne : comprendre pourquoi notre cerveau est vulnérable, identifier les techniques de manipulation (phishing, ingénierie sociale, infox ciblée), et adopter des réflexes pratiques. Le format est court — 1 heure — et très concret.
+
+La formation est disponible en vidéo ici pour vous donner une idée : https://youtu.be/I-51GUOEPJc
+
+Dans un environnement franco-chinois où les enjeux informationnels sont particulièrement forts, ce type de formation me semble avoir une valeur ajoutée réelle pour vos membres et leurs équipes locales.
+
+N'hésitez pas à me contacter si vous souhaitez en savoir plus, ou pour convenir d'un échange.
+
+Bien à vous,
+
+---
+Antonin Atger
+antoninatger.com/interventions</div>
+</div>
+
+<!-- GZ 04 – Sun Yat-sen University -->
+<div class="mail-card">
+  <div class="mail-header">
+    <div class="mail-num">GZ · 04</div>
+    <div style="flex:1">
+      <div class="mail-dest">Sun Yat-sen University — School of Communication &amp; Design</div>
+      <div class="mail-to">iso@mail.sysu.edu.cn</div>
+    </div>
+    <span class="lang-badge lang-en">English</span>
+  </div>
+  <div class="mail-meta">
+    <div class="mail-meta-item"><span class="mail-meta-label">Subject</span><span class="mail-meta-value">Guest lecture proposal — cognitive science of fake news &amp; disinformation</span></div>
+  </div>
+  <div class="mail-body">Hello,
+
+My name is Antonin Atger. I am a French author and PhD student in cognitive science, specialising in disinformation and the psychological mechanisms behind the spread of fake news. I will be in the Guangzhou area in June — I am giving talks at the Lycée Français International Victor-Segalen in Hong Kong while there — and would love to explore the possibility of a guest lecture at Sun Yat-sen University.
+
+I have been giving talks on fake news and critical thinking for several years — in schools, public libraries, and conferences across France (86 schools, 36 libraries). My approach connects cognitive psychology (biases, heuristics, optical illusions) with a practical media literacy angle: why we fall for misinformation, and what we can actually do about it. I also cover disinformation beyond fake news — astroturfing, manufactured doubt, framing — and the limits of fact-checking as a standalone tool.
+
+I gave a TEDx talk on social media and critical thinking, and participated in an academic congress on disinformation dynamics alongside French researchers and science communicators.
+
+Here is a short presentation video of my talk: https://youtu.be/vUlKdtYcJPs
+And a full recorded lecture (French, but gives a sense of the format and energy): https://youtu.be/KGdrXPr2ONQ
+
+I present in English. Please let me know if this might be of interest to your department, or if there is a better person to contact.
+
+Best regards,
+
+---
+Antonin Atger
+antoninatger.com/interventions</div>
+</div>
+
+<!-- GZ 05 – Jinan University -->
+<div class="mail-card">
+  <div class="mail-header">
+    <div class="mail-num">GZ · 05</div>
+    <div style="flex:1">
+      <div class="mail-dest">Jinan University — College of Journalism &amp; Communication</div>
+      <div class="mail-to">iced@jnu.edu.cn</div>
+    </div>
+    <span class="lang-badge lang-en">English</span>
+  </div>
+  <div class="mail-meta">
+    <div class="mail-meta-item"><span class="mail-meta-label">Subject</span><span class="mail-meta-value">Guest lecture proposal — storytelling &amp; the psychology of disinformation</span></div>
+  </div>
+  <div class="mail-body">Hello,
+
+My name is Antonin Atger. I am a French science-fiction author and PhD student in cognitive science. I will be visiting Guangzhou in June and would love to propose a guest lecture for your students.
+
+I offer two talks that I think could be particularly relevant for journalism and communication students:
+
+— "Disinformation beyond fake news": how information is manipulated without lying — framing, astroturfing, manufactured doubt, and the cognitive biases that make these techniques effective. I also discuss the limits of fact-checking as a standalone tool. Video overview: https://youtu.be/HLEhkhCJCyw
+
+— "The science of storytelling": why certain stories are irresistible, and what that means for how we construct — and critically consume — media narratives. What neuroscience tells us about narrative hooks, suspense, and persuasion. Video: https://youtu.be/vUlKdtYcJPs
+
+I have given similar lectures in schools, public libraries, and academic contexts across France (TEDx, academic conferences, 86 schools, 36 libraries). I present in English.
+
+Jinan University's strong international profile and its journalism programme make it exactly the kind of context I enjoy most. I would be glad to adapt either session to your students' level and interests.
+
+Please let me know if this might be of interest, or if there is someone else I should contact.
+
+Best regards,
+
+---
+Antonin Atger
+antoninatger.com/interventions</div>
+</div>
+
+<!-- GZ 06 – Guangzhou Library -->
+<div class="mail-card">
+  <div class="mail-header">
+    <div class="mail-num">GZ · 06</div>
+    <div style="flex:1">
+      <div class="mail-dest">Guangzhou Library — 广州图书馆</div>
+      <div class="mail-to">Tél : +86 20 3869 4000 · gzlib.org.cn</div>
+    </div>
+    <span class="lang-badge lang-en">English</span>
+  </div>
+  <div class="mail-meta">
+    <div class="mail-meta-item"><span class="mail-meta-label">Subject</span><span class="mail-meta-value">Public talk proposal — Fake News &amp; the science of storytelling</span></div>
+  </div>
+  <div class="mail-body">Hello,
+
+My name is Antonin Atger. I am a French author and PhD student in cognitive science. I will be visiting Guangzhou in June and would love to propose a public talk for your programme.
+
+I give talks on two subjects that consistently draw wide, curious audiences:
+
+— "Fake News and the Brain": why we fall for false information, how cognitive biases and social media algorithms work together against us, and what practical tools we have to evaluate sources. Very interactive — I use optical illusions and live examples throughout. A full recorded session is available here: https://youtu.be/KGdrXPr2ONQ
+
+— "The Magic of Stories": what makes a book, a film or a series unforgettable? A talk on narrative mechanics, the hero's journey, and the craft behind great storytelling. Always energising for general audiences.
+
+Both talks run 1–2 hours and require no academic background. I have given similar talks in over 36 public libraries across France, and I am happy to present in English, working with an interpreter if needed.
+
+Please let me know whether you have a process for external speaker proposals, or the right person to contact about your public programme.
+
+Thank you for your time.
+
+Best regards,
+
+---
+Antonin Atger
+antoninatger.com/interventions</div>
+</div>
+
+<script>
+(function() {
+  document.querySelectorAll('.mail-body, .mail-meta-value').forEach(function(el) {
+    if (el.textContent.indexOf('—') !== -1) {
+      el.textContent = el.textContent.replace(/— ?/g, '');
+    }
+  });
+
+  function extractEmails(text) {
+    return (text.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g) || []);
+  }
+
+  function updateCardState(card, status) {
+    card.classList.toggle('is-sent', !!status.sent);
+    card.classList.toggle('is-copied', !!status.copied);
+  }
+
+  document.querySelectorAll('.mail-card').forEach(function(card) {
+    var mailToEl = card.querySelector('.mail-to');
+    var subjectEl = card.querySelector('.mail-meta-value');
+    var bodyEl = card.querySelector('.mail-body');
+    if (!subjectEl || !bodyEl) return;
+
+    var numEl = card.querySelector('.mail-num');
+    var cardId = numEl ? numEl.textContent.trim().toLowerCase().replace(/\s*·\s*/g, '-').replace(/\s+/g, '') : Math.random().toString(36).slice(2);
+    var storageKey = 'mail-status-' + cardId;
+    var status = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+    var emails = mailToEl ? extractEmails(mailToEl.textContent) : [];
+    var subject = subjectEl.textContent.trim();
+    var bodyText = bodyEl.innerText.trim();
+
+    var actions = document.createElement('div');
+    actions.className = 'mail-actions';
+
+    var copyBtn = document.createElement('button');
+    copyBtn.className = 'btn-copy';
+    copyBtn.textContent = '📋 Copier';
+    copyBtn.addEventListener('click', function() {
+      navigator.clipboard.writeText(bodyText).then(function() {
+        copyBtn.textContent = '✓ Copié !';
+        copyBtn.classList.add('copied');
+        setTimeout(function() {
+          copyBtn.textContent = '📋 Copier';
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+    actions.appendChild(copyBtn);
+
+    if (emails.length > 0) {
+      var mailtoLink = document.createElement('a');
+      mailtoLink.className = 'btn-mailto';
+      mailtoLink.href = 'mailto:' + emails.join(',') + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyText);
+      mailtoLink.textContent = '✉ Ouvrir dans la messagerie';
+      actions.appendChild(mailtoLink);
+    }
+
+    var statusGroup = document.createElement('div');
+    statusGroup.className = 'status-group';
+
+    function makeCheck(labelText, key) {
+      var lbl = document.createElement('label');
+      lbl.className = 'status-label';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = !!status[key];
+      cb.addEventListener('change', function() {
+        status[key] = cb.checked;
+        localStorage.setItem(storageKey, JSON.stringify(status));
+        updateCardState(card, status);
+      });
+      lbl.appendChild(cb);
+      lbl.appendChild(document.createTextNode(' ' + labelText));
+      return lbl;
+    }
+
+    statusGroup.appendChild(makeCheck('Copié', 'copied'));
+    statusGroup.appendChild(makeCheck('Envoyé', 'sent'));
+    actions.appendChild(statusGroup);
+
+    updateCardState(card, status);
+    card.appendChild(actions);
+  });
+})();
+</script>
+</body>
+</html>
