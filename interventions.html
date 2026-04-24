@@ -112,7 +112,7 @@
 
   .card {
     border: 1px solid var(--border);
-    background: var(--surface);
+    background: #faf8f5;
     margin-bottom: -1px;
     overflow: hidden;
     transition: border-color .2s;
@@ -823,10 +823,10 @@
 </header>
 
 <nav class="nav-tabs" aria-label="Sections">
-  <span style="font-size:12px;color:var(--ink-soft);width:100%;display:block;margin-bottom:2px;">Je recherche une intervention&nbsp;/ formation pour&nbsp;:</span>
-  <a class="nav-tab" href="#scolaire" target="_parent"><span class="tab-dot"></span>Scolaire &amp; médiathèque</a>
-  <a class="nav-tab" href="#formation-enseignants" target="_parent"><span class="tab-dot"></span>Personnel enseignant</a>
-  <a class="nav-tab" href="#formation-entreprise" target="_parent"><span class="tab-dot"></span>Entreprise</a>
+  <span style="font-size:13px;color:var(--ink-soft);width:100%;display:block;margin-bottom:2px;">Je recherche une intervention&nbsp;/ formation pour&nbsp;:</span>
+  <a class="nav-tab" href="#scolaire" onclick="scrollTo(event,'#scolaire')"><span class="tab-dot"></span>Scolaire &amp; médiathèque</a>
+  <a class="nav-tab" href="#formation-enseignants" onclick="scrollTo(event,'#formation-enseignants')"><span class="tab-dot"></span>Personnel enseignant</a>
+  <a class="nav-tab" href="#formation-entreprise" onclick="scrollTo(event,'#formation-entreprise')"><span class="tab-dot"></span>Entreprise</a>
 </nav>
 
 <div class="section-block" style="margin-top: 40px; margin-bottom: 0;">
@@ -1519,6 +1519,22 @@
 </div>
 
 <script>
+  // ── Onglets ──
+  function scrollTo(e, hash) {
+    e.preventDefault();
+    var target = document.querySelector(hash);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ── Bouton retour en haut : apparaît dès que le header disparaît ──
+  var btt = document.getElementById('back-to-top');
+  var header = document.querySelector('.page-header');
+  if (header && btt) {
+    new IntersectionObserver(function(entries) {
+      btt.classList.toggle('visible', !entries[0].isIntersecting);
+    }, { threshold: 0 }).observe(header);
+  }
+
   // ── Accordéon enseignements ──
   function toggleAccord(btn) {
     const item = btn.closest('.accord-item');
@@ -1619,9 +1635,6 @@
     if (e.key === 'Escape')     closeLightbox();
   });
 
-  window.addEventListener('scroll', function() {
-    document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 400);
-  });
 
   // ── Deep-link depuis l'URL parente (postMessage cross-origin) ──
   function scrollToHash(hash) {
