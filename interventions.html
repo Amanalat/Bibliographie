@@ -824,9 +824,9 @@
 
 <nav class="nav-tabs" aria-label="Sections">
   <span style="font-size:12px;color:var(--ink-soft);width:100%;display:block;margin-bottom:2px;">Je recherche une intervention&nbsp;/ formation pour&nbsp;:</span>
-  <a class="nav-tab" href="#scolaire" onclick="navTo(event,'#scolaire')"><span class="tab-dot"></span>Scolaire &amp; médiathèque</a>
-  <a class="nav-tab" href="#formation-enseignants" onclick="navTo(event,'#formation-enseignants')"><span class="tab-dot"></span>Personnel enseignant</a>
-  <a class="nav-tab" href="#formation-entreprise" onclick="navTo(event,'#formation-entreprise')"><span class="tab-dot"></span>Entreprise</a>
+  <a class="nav-tab" href="#scolaire" target="_parent"><span class="tab-dot"></span>Scolaire &amp; médiathèque</a>
+  <a class="nav-tab" href="#formation-enseignants" target="_parent"><span class="tab-dot"></span>Personnel enseignant</a>
+  <a class="nav-tab" href="#formation-entreprise" target="_parent"><span class="tab-dot"></span>Entreprise</a>
 </nav>
 
 <div class="section-block" style="margin-top: 40px; margin-bottom: 0;">
@@ -1519,19 +1519,6 @@
 </div>
 
 <script>
-  // ── Navigation onglets (fonctionne en iframe et en direct) ──
-  function navTo(e, hash) {
-    e.preventDefault();
-    var target = document.querySelector(hash);
-    if (!target) return;
-    // Si dans un iframe, envoie la position au parent
-    if (window.self !== window.top) {
-      window.parent.postMessage({ scrollTo: target.getBoundingClientRect().top + window.scrollY }, '*');
-    } else {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
   // ── Accordéon enseignements ──
   function toggleAccord(btn) {
     const item = btn.closest('.accord-item');
