@@ -299,7 +299,7 @@
     margin: 40px 24px 0;
     border: 1px solid var(--border);
     border-radius: 10px;
-    background: var(--surface);
+    background: #faf8f5;
     overflow: hidden;
   }
   .trust-toggle {
@@ -420,7 +420,7 @@
     padding: 28px 30px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    background: var(--surface);
+    background: #faf8f5;
   }
   .footer-info .fi-title {
     font-family: 'Cormorant Garamond', serif;
@@ -443,7 +443,7 @@
     position: relative;
     border: 1px solid var(--border);
     border-radius: 8px;
-    background: var(--surface);
+    background: #faf8f5;
     padding: 32px 32px 26px 40px;
   }
   .testimonial-quote {
@@ -640,7 +640,7 @@
   .accord-item {
     border: 1px solid var(--border);
     border-radius: 8px;
-    background: var(--surface);
+    background: #faf8f5;
     overflow: hidden;
     transition: border-color .2s;
   }
@@ -709,7 +709,7 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
-    background: var(--surface);
+    background: #faf8f5;
   }
 
   .project-inner {
@@ -824,9 +824,9 @@
 
 <nav class="nav-tabs" aria-label="Sections">
   <span style="font-size:13px;color:var(--ink-soft);width:100%;display:block;margin-bottom:2px;">Je recherche une intervention&nbsp;/ formation pour&nbsp;:</span>
-  <a class="nav-tab" href="#scolaire" onclick="scrollTo(event,'#scolaire')"><span class="tab-dot"></span>Scolaire &amp; médiathèque</a>
-  <a class="nav-tab" href="#formation-enseignants" onclick="scrollTo(event,'#formation-enseignants')"><span class="tab-dot"></span>Personnel enseignant</a>
-  <a class="nav-tab" href="#formation-entreprise" onclick="scrollTo(event,'#formation-entreprise')"><span class="tab-dot"></span>Entreprise</a>
+  <a class="nav-tab" href="#scolaire" onclick="navTo(event,'#scolaire')"><span class="tab-dot"></span>Scolaire &amp; médiathèque</a>
+  <a class="nav-tab" href="#formation-enseignants" onclick="navTo(event,'#formation-enseignants')"><span class="tab-dot"></span>Personnel enseignant</a>
+  <a class="nav-tab" href="#formation-entreprise" onclick="navTo(event,'#formation-entreprise')"><span class="tab-dot"></span>Entreprise</a>
 </nav>
 
 <div class="section-block" style="margin-top: 40px; margin-bottom: 0;">
@@ -1101,7 +1101,7 @@
 <!-- Formation enseignants -->
 <div id="formation-enseignants" class="section-block" style="margin-bottom: 44px; margin-top: 44px;">
   <div class="section-heading"><span>Formation enseignants : l'esprit critique en classe</span></div>
-  <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface);">
+  <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#faf8f5;">
     <div style="padding:24px 28px 20px;border-bottom:1px solid var(--border);">
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
         <span class="tag accent" style="font-size:12px;padding:4px 12px;">Gratuit · En ligne</span>
@@ -1134,7 +1134,7 @@
 <div id="formation-entreprise" class="section-block" style="margin-bottom: 44px; margin-top: 44px;">
   <div class="section-heading"><span>Formation en entreprise</span></div>
 
-  <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface);">
+  <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#faf8f5;">
 
     <!-- En-tête -->
     <div style="padding:24px 28px 20px;border-bottom:1px solid var(--border);">
@@ -1520,7 +1520,7 @@
 
 <script>
   // ── Onglets ──
-  function scrollTo(e, hash) {
+  function navTo(e, hash) {
     e.preventDefault();
     var target = document.querySelector(hash);
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
