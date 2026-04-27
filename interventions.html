@@ -822,6 +822,359 @@
   <p>Depuis plusieurs années, j'interviens dans les établissements scolaires et les médiathèques autour de thématiques d'esprit critique, de désinformation, d'écriture et de rhétorique. Cliquez sur une intervention pour en découvrir le détail.</p>
 </header>
 
+<!-- ══════════ BANDEAU CRÉDIBILITÉ ══════════ -->
+<style>
+.cred-band {
+  background: #faf8f5;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+.cred-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 4px;
+  padding: 14px 0 10px;
+}
+.cred-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.cred-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 12px 6px 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+  white-space: nowrap;
+}
+.cred-btn:hover,
+.cred-btn.active {
+  background: var(--accent-light);
+  border-color: rgba(192,57,43,.35);
+  color: var(--accent);
+}
+.cred-btn .cdot { color: var(--accent); font-size: 13px; line-height: 1; }
+.cred-btn .cchev {
+  width: 13px; height: 13px;
+  flex-shrink: 0;
+  color: var(--ink-soft);
+  transition: transform .25s;
+}
+.cred-btn.active .cchev { transform: rotate(180deg); color: var(--accent); }
+
+.cred-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s cubic-bezier(.4,0,.2,1);
+}
+.cred-panel.open { max-height: 1400px; }
+
+.cred-inner {
+  padding: 20px 0 28px;
+  border-top: 1px solid var(--border);
+}
+.cred-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.cred-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.cred-desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  max-width: 640px;
+  margin-bottom: 16px;
+}
+.cred-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #111;
+}
+.cred-video iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+.cred-2col {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 24px;
+  align-items: start;
+}
+.cred-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.cred-photo {
+  overflow: hidden;
+  border-radius: 6px;
+  aspect-ratio: 3/4;
+}
+.cred-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: .88;
+  transition: opacity .2s;
+}
+.cred-photo:hover img { opacity: 1; }
+.cred-photos4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-width: 700px;
+}
+.cred-photos4 figure {
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 4/3;
+  margin: 0;
+  background: #000;
+}
+.cred-photos4 figure img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: .88;
+  transition: opacity .2s;
+}
+.cred-photos4 figure:hover img { opacity: 1; }
+.cred-stat-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--accent-light);
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(192,57,43,.15);
+}
+.cred-stat { text-align: center; }
+.cred-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.cred-stat-label {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+.cred-divider {
+  width: 1px; height: 44px;
+  background: rgba(192,57,43,.2);
+}
+@media (max-width: 600px) {
+  .cred-2col { grid-template-columns: 1fr; }
+  .cred-photos4 { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+
+<div class="cred-band">
+
+  <!-- Ligne de boutons -->
+  <div class="cred-row">
+    <span class="cred-label">Références&nbsp;:</span>
+    <button class="cred-btn" onclick="openAllCreds()" id="btn-all" style="border-style:dashed;">
+      <span id="btn-all-label">Tout ouvrir</span>
+      <svg class="cchev" id="btn-all-chev" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <button class="cred-btn" id="btn-tedx" onclick="toggleCred('tedx')">
+      <span class="cdot">▸</span> TEDx
+      <svg class="cchev" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <button class="cred-btn" id="btn-an" onclick="toggleCred('an')">
+      <span class="cdot">▸</span> Assemblée Nationale
+      <svg class="cchev" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <button class="cred-btn" id="btn-voices" onclick="toggleCred('voices')">
+      <span class="cdot">▸</span> Prix européen Voices 2025
+      <svg class="cchev" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <button class="cred-btn" id="btn-f3" onclick="toggleCred('f3')">
+      <span class="cdot">▸</span> France 3
+      <svg class="cchev" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <button class="cred-btn" id="btn-struct" onclick="toggleCred('struct')">
+      <span class="cdot">▸</span> <strong style="font-weight:600;">122 structures</strong>&nbsp;en France
+      <svg class="cchev" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <!-- ── Panneau TEDx ── -->
+  <div class="cred-panel" id="panel-tedx">
+    <div class="cred-inner">
+      <div class="cred-2col">
+        <div>
+          <div class="cred-tag">TEDx · 2024</div>
+          <div class="cred-title">Garder espoir sur les réseaux sociaux</div>
+          <p class="cred-desc">Intervention TEDx sur la désinformation, les réseaux sociaux et la possibilité de cultiver un regard critique tout en restant optimiste.</p>
+          <div class="cred-video">
+            <iframe src="https://www.youtube.com/embed/4tVeRfXSCSM" title="TEDx - Garder espoir sur les réseaux sociaux" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+        <div>
+          <div class="cred-photos">
+            <div class="cred-photo">
+              <img src="https://antoninatger.com/wp-content/uploads/2025/02/bafkreibzcomnscl5mtzl5p756acis6goaodoh3n5avluzt4bxto76eg53y.jpg" alt="TEDx 2024" loading="lazy">
+            </div>
+            <div class="cred-photo">
+              <img src="https://antoninatger.com/wp-content/uploads/2024/12/tedx2024_by_fred_giraud-21281291258691058558378665.jpg" alt="TEDx 2024" loading="lazy">
+            </div>
+          </div>
+          <p style="font-size:10px;color:var(--ink-soft);text-align:right;margin-top:6px;">© Frédéric Giraud</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panneau Assemblée Nationale ── -->
+  <div class="cred-panel" id="panel-an">
+    <div class="cred-inner">
+      <div class="cred-tag">Assemblée Nationale</div>
+      <div class="cred-title">Audition parlementaire — impact des réseaux sociaux sur les jeunes</div>
+      <p class="cred-desc">Auditionné par l'Assemblée Nationale sur l'impact des médias sociaux sur les plus jeunes.</p>
+      <div class="cred-video" style="max-width:580px;">
+        <iframe src="https://www.youtube.com/embed/scZahm60bpU?si=gYot2ZxT3jwqkKEj" title="Audition parlementaire - Assemblée Nationale" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panneau Prix Voices 2025 ── -->
+  <div class="cred-panel" id="panel-voices">
+    <div class="cred-inner">
+      <div class="cred-tag">Prix européen · Zagreb, mars 2025</div>
+      <div class="cred-title">Prix Voices 2025 — catégorie « Data Wellbeing »</div>
+      <p class="cred-desc">Dans le cadre des <strong style="color:var(--ink);">Classes Culturelles Numériques</strong> (Métropole de Lyon), j'ai imaginé avec plusieurs classes une histoire de science-fiction autour de la protection des données personnelles. Ce travail collectif a été récompensé en mars 2025 par le <strong style="color:var(--ink);">prix européen Voices</strong> lors du festival VOICES à Zagreb — festival réunissant les acteurs européens du journalisme et de la lutte contre la manipulation de l'information.</p>
+      <div class="cred-photos4">
+        <figure>
+          <img src="https://antoninatger.com/wp-content/uploads/2025/11/medijska-pismenost-antonin-atger-croatie.jpg" alt="Médijska pismenost - Croatie" loading="lazy">
+        </figure>
+        <figure>
+          <img src="https://antoninatger.com/wp-content/uploads/2025/03/img-20250228-wa0008-edited.jpg" alt="Voices Award - Zagreb 2025" loading="lazy">
+        </figure>
+        <figure>
+          <img src="https://antoninatger.com/wp-content/uploads/2025/03/signal-2025-03-05-205515-edited.jpeg" alt="Voices Award - Zagreb 2025" loading="lazy">
+        </figure>
+        <figure>
+          <img src="https://antoninatger.com/wp-content/uploads/2025/03/img-20250301-wa0005-edited-1.jpg" alt="Voices Award - Zagreb 2025" loading="lazy">
+        </figure>
+      </div>
+      <p style="font-size:10px;color:var(--ink-soft);margin-top:8px;">Festival VOICES, Zagreb — mars 2025</p>
+    </div>
+  </div>
+
+  <!-- ── Panneau France 3 ── -->
+  <div class="cred-panel" id="panel-f3">
+    <div class="cred-inner">
+      <div class="cred-tag">France 3 Auvergne-Rhône-Alpes</div>
+      <div class="cred-title">Apprendre à décrypter les fake news à l'école</div>
+      <div class="cred-video" style="max-width:580px;">
+        <iframe src="https://www.youtube.com/embed/tkSZ_XyKoho?si=8rPI-1MlAn05w8t2" title="France 3 Auvergne-Rhône-Alpes - Apprendre à décrypter les fake news à l'école" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panneau 122 structures ── -->
+  <div class="cred-panel" id="panel-struct">
+    <div class="cred-inner">
+      <p class="cred-desc" style="margin-bottom:20px;">J'interviens depuis plusieurs années dans des établissements scolaires (du CM1 au lycée), des médiathèques et bibliothèques, partout en France.</p>
+      <div class="cred-stat-row">
+        <div class="cred-stat">
+          <div class="cred-stat-num">86</div>
+          <div class="cred-stat-label">établissements scolaires</div>
+        </div>
+        <div class="cred-divider"></div>
+        <div class="cred-stat">
+          <div class="cred-stat-num">36</div>
+          <div class="cred-stat-label">médiathèques &amp; bibliothèques</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--ink-soft);margin-top:14px;font-style:italic;">La liste complète est disponible ci-dessous dans la section « Ils m'ont fait confiance ».</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  // Accordéon : un seul panneau ouvert à la fois
+  function toggleCred(id) {
+    var btn    = document.getElementById('btn-' + id);
+    var panel  = document.getElementById('panel-' + id);
+    var isOpen = panel.classList.contains('open');
+
+    document.querySelectorAll('.cred-btn').forEach(function(b)   { b.classList.remove('active'); });
+    document.querySelectorAll('.cred-panel').forEach(function(p) { p.classList.remove('open'); });
+
+    if (!isOpen) {
+      btn.classList.add('active');
+      panel.classList.add('open');
+    }
+  }
+
+  // Tout ouvrir / tout fermer
+  function openAllCreds() {
+    var anyOpen = document.querySelector('.cred-panel.open');
+    var btnAll  = document.getElementById('btn-all');
+    var lblAll  = document.getElementById('btn-all-label');
+    var chevAll = document.getElementById('btn-all-chev');
+    if (anyOpen) {
+      document.querySelectorAll('.cred-btn:not(#btn-all)').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelectorAll('.cred-panel').forEach(function(p) { p.classList.remove('open'); });
+      if (lblAll)  lblAll.textContent = 'Tout ouvrir';
+      if (chevAll) chevAll.style.transform = '';
+    } else {
+      document.querySelectorAll('.cred-btn:not(#btn-all)').forEach(function(b) { b.classList.add('active'); });
+      document.querySelectorAll('.cred-panel').forEach(function(p) { p.classList.add('open'); });
+      if (lblAll)  lblAll.textContent = 'Tout fermer';
+      if (chevAll) chevAll.style.transform = 'rotate(180deg)';
+    }
+  }
+
+  window.toggleCred    = toggleCred;
+  window.openAllCreds  = openAllCreds;
+})();
+</script>
+<!-- ══════════ FIN BANDEAU CRÉDIBILITÉ ══════════ -->
+
 <nav class="nav-tabs" aria-label="Sections">
   <span style="font-size:13px;color:var(--ink-soft);width:100%;display:block;margin-bottom:2px;">Je recherche une intervention&nbsp;/ formation pour&nbsp;:</span>
   <a class="nav-tab" href="#scolaire" onclick="navTo(event,'#scolaire')"><span class="tab-dot"></span>Scolaire &amp; médiathèque</a>
@@ -1062,8 +1415,8 @@
 
 <!-- Conférence complète médiathèque -->
 <div class="section-block" style="margin-bottom: 44px; margin-top: 44px;">
-  <div class="section-heading"><span>Conférence complète — médiathèque Simone Veil</span></div>
-  <p style="font-size:15px;color:var(--ink-soft);margin:0 0 20px;line-height:1.7;">Envie de voir à quoi ressemble une intervention en conditions réelles ? Voici l'enregistrement complet d'une conférence <strong style="color:var(--ink);font-weight:500;">Fake News et Esprit Critique</strong> donnée à la médiathèque Simone Veil de Jassans-Riottier — disponible gratuitement en ligne.</p>
+  <div class="section-heading"><span>Conférence complète - médiathèque Simone Veil</span></div>
+  <p style="font-size:15px;color:var(--ink-soft);margin:0 0 20px;line-height:1.7;">Envie de voir à quoi ressemble une intervention en conditions réelles ? Voici l'enregistrement complet d'une conférence <strong style="color:var(--ink);font-weight:500;">Fake News et Esprit Critique</strong> donnée à la médiathèque Simone Veil de Jassans-Riottier - disponible gratuitement en ligne.</p>
   <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;background:#000;">
     <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/KGdrXPr2ONQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
   </div>
@@ -1107,14 +1460,14 @@
         <span class="tag accent" style="font-size:12px;padding:4px 12px;">Gratuit · En ligne</span>
         <span class="tag" style="font-size:12px;padding:4px 12px;">Enseignants · CPE · Formateurs</span>
       </div>
-      <p style="font-size:14px;color:var(--ink-soft);line-height:1.75;max-width:720px;margin:0;">Les professeurs sont de plus en plus sollicités pour enseigner l'esprit critique — mais sont-ils eux-mêmes formés à cet enseignement ? Sur la base de mes recherches en psychologie et de mes propres interventions, j'ai conçu une <strong style="color:var(--ink);font-weight:500;">formation gratuite, disponible en ligne</strong>, à destination des enseignants et du personnel encadrant.</p>
+      <p style="font-size:14px;color:var(--ink-soft);line-height:1.75;max-width:720px;margin:0;">Les professeurs sont de plus en plus sollicités pour enseigner l'esprit critique - mais sont-ils eux-mêmes formés à cet enseignement ? Sur la base de mes recherches en psychologie et de mes propres interventions, j'ai conçu une <strong style="color:var(--ink);font-weight:500;">formation gratuite, disponible en ligne</strong>, à destination des enseignants et du personnel encadrant.</p>
     </div>
     <div style="padding:22px 28px;border-bottom:1px solid var(--border);">
       <div style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Contenu de la formation</div>
       <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
         <li style="display:flex;gap:10px;font-size:13px;color:var(--ink-soft);line-height:1.5;"><span style="color:var(--accent);flex-shrink:0;">→</span><span>Comment identifier la véracité d'une information en ligne</span></li>
         <li style="display:flex;gap:10px;font-size:13px;color:var(--ink-soft);line-height:1.5;"><span style="color:var(--accent);flex-shrink:0;">→</span><span>Quels outils d'esprit critique solliciter pour évaluer la pertinence d'un fait</span></li>
-        <li style="display:flex;gap:10px;font-size:13px;color:var(--ink-soft);line-height:1.5;"><span style="color:var(--accent);flex-shrink:0;">→</span><span>Pourquoi il est parfois difficile de transmettre un contenu à une classe — et comment y remédier</span></li>
+        <li style="display:flex;gap:10px;font-size:13px;color:var(--ink-soft);line-height:1.5;"><span style="color:var(--accent);flex-shrink:0;">→</span><span>Pourquoi il est parfois difficile de transmettre un contenu à une classe - et comment y remédier</span></li>
         <li style="display:flex;gap:10px;font-size:13px;color:var(--ink-soft);line-height:1.5;"><span style="color:var(--accent);flex-shrink:0;">→</span><span>Mise en pratique à partir d'un échange réel avec un élève</span></li>
       </ul>
     </div>
@@ -1244,7 +1597,7 @@
   </div>
 </div>
 
-<!-- ── INTERVENTIONS SCOLAIRES — GALERIE ── -->
+<!-- ── INTERVENTIONS SCOLAIRES - GALERIE ── -->
 <div class="section-block">
   <div class="section-heading"><span>Interventions scolaires</span></div>
   <div class="photo-gallery">
@@ -1252,7 +1605,7 @@
       <img src="https://antoninatger.com/wp-content/uploads/2025/06/1000065401.jpg" alt="Intervention scolaire" loading="lazy">
     </div>
     <div class="photo-thumb" onclick="openLightbox(1)">
-      <img src="https://antoninatger.com/wp-content/uploads/2025/11/medijska-pismenost-antonin-atger-croatie.jpg" alt="Médijska pismenost — Croatie" loading="lazy">
+      <img src="https://antoninatger.com/wp-content/uploads/2025/11/medijska-pismenost-antonin-atger-croatie.jpg" alt="Médijska pismenost - Croatie" loading="lazy">
     </div>
     <div class="photo-thumb" onclick="openLightbox(2)">
       <img src="https://antoninatger.com/wp-content/uploads/2025/03/img_20241108_095801.jpg" alt="Intervention scolaire 2024" loading="lazy">
@@ -1279,7 +1632,7 @@
       <img src="https://antoninatger.com/wp-content/uploads/2023/11/2-450215437-e1700955923614.jpg" alt="Intervention scolaire 2023" loading="lazy">
     </div>
     <div class="photo-thumb" onclick="openLightbox(10)">
-      <img src="https://antoninatger.com/wp-content/uploads/2023/08/1-college-jean-moulin-trevoux-3.jpg" alt="Collège Jean Moulin — Trévoux" loading="lazy">
+      <img src="https://antoninatger.com/wp-content/uploads/2023/08/1-college-jean-moulin-trevoux-3.jpg" alt="Collège Jean Moulin - Trévoux" loading="lazy">
       <div class="credit-badge">© Guillaume Atger</div>
     </div>
   </div>
@@ -1315,19 +1668,19 @@
       </button>
       <div class="accord-body">
         <div class="accord-body-inner">
-          <img src="https://antoninatger.com/wp-content/uploads/2024/01/20220929_174617.jpg" alt="Cours Sup de Pub — Narrative Design" loading="lazy"
+          <img src="https://antoninatger.com/wp-content/uploads/2024/01/20220929_174617.jpg" alt="Cours Sup de Pub - Narrative Design" loading="lazy"
             style="float: right; width: 180px; aspect-ratio: 16/9; object-fit: cover; border-radius: 6px; display: block; margin: 0 0 12px 20px;">
           <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 14px;">
             Dans ce cours, j'ai enseigné le narrative design, c'est-à-dire l'art de construire une histoire pensée pour le public, en cherchant à maximiser sa compréhension, son engagement et son impact émotionnel. L'objectif était de montrer que raconter une histoire est un processus structuré, qui repose sur des outils précis et maîtrisables.
           </p>
           <div style="font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; clear: both;">6 points clés du cours</div>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 7px;">
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Penser la narration comme une expérience</strong> — créer pour les autres en anticipant la réception et les émotions du public.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Maîtriser les structures narratives</strong> — le parcours du héros et d'autres structures pour organiser un récit et lui donner du rythme.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Construire des personnages efficaces</strong> — archétypes, identification et engagement du public.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Comprendre le rôle des symboles</strong> — sens des éléments visuels et narratifs, et stéréotypes qu'ils peuvent véhiculer.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Travailler le message d'une histoire</strong> — message intentionnel ou non, et la façon dont il est perçu par le public.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Projet de création final</strong> — mobilisation de l'ensemble des notions pour construire un storytelling cohérent.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Penser la narration comme une expérience</strong> - créer pour les autres en anticipant la réception et les émotions du public.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Maîtriser les structures narratives</strong> - le parcours du héros et d'autres structures pour organiser un récit et lui donner du rythme.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Construire des personnages efficaces</strong> - archétypes, identification et engagement du public.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Comprendre le rôle des symboles</strong> - sens des éléments visuels et narratifs, et stéréotypes qu'ils peuvent véhiculer.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Travailler le message d'une histoire</strong> - message intentionnel ou non, et la façon dont il est perçu par le public.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Projet de création final</strong> - mobilisation de l'ensemble des notions pour construire un storytelling cohérent.</span></li>
           </ul>
         </div>
       </div>
@@ -1347,16 +1700,16 @@
       <div class="accord-body">
         <div class="accord-body-inner">
           <p style="font-size: 13.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 14px;">
-            Dans ce cours dispensé au MASNI (Master Études européennes et internationales), j'explore les mécanismes qui permettent à la désinformation et aux théories du complot de proliférer dans nos sociétés contemporaines. L'objectif est d'outiller les étudiants intellectuellement pour identifier, analyser et répondre aux phénomènes de manipulation de l'information — qu'ils rencontrent ces phénomènes dans le débat public, dans les médias ou dans leur propre environnement professionnel.
+            Dans ce cours dispensé au MASNI (Master Études européennes et internationales), j'explore les mécanismes qui permettent à la désinformation et aux théories du complot de proliférer dans nos sociétés contemporaines. L'objectif est d'outiller les étudiants intellectuellement pour identifier, analyser et répondre aux phénomènes de manipulation de l'information - qu'ils rencontrent ces phénomènes dans le débat public, dans les médias ou dans leur propre environnement professionnel.
           </p>
           <div style="font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">6 points clés du cours</div>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 7px;">
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Définir la théorie du complot</strong> — caractéristiques d'un complot, distinction entre faits établis et pensée complotiste, exemples historiques et contemporains.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Identifier la Fake News</strong> — critères de validation de l'information : fiabilité de la source, niveau de preuves, multiplicité des canaux et retours critiques.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Au-delà de la Fake News</strong> — spectre complet de la désinformation : mésinformation (involontaire), désinformation (intentionnelle) et « misleading news » (information trompeuse sans être fausse).</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Comprendre la rhétorique</strong> — art de persuader, structures du débat (monologue, délibération, compétition, conflit) et triptyque ethos / pathos / logos.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Complotisme et politique</strong> — liens entre pensée complotiste et positionnements politiques, biais partisan et usages stratégiques du complot dans le discours politique.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Développer un esprit critique</strong> — outils pratiques pour évaluer l'information, résister aux biais cognitifs et naviguer dans l'infosphère contemporaine.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Définir la théorie du complot</strong> - caractéristiques d'un complot, distinction entre faits établis et pensée complotiste, exemples historiques et contemporains.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Identifier la Fake News</strong> - critères de validation de l'information : fiabilité de la source, niveau de preuves, multiplicité des canaux et retours critiques.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Au-delà de la Fake News</strong> - spectre complet de la désinformation : mésinformation (involontaire), désinformation (intentionnelle) et « misleading news » (information trompeuse sans être fausse).</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Comprendre la rhétorique</strong> - art de persuader, structures du débat (monologue, délibération, compétition, conflit) et triptyque ethos / pathos / logos.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Complotisme et politique</strong> - liens entre pensée complotiste et positionnements politiques, biais partisan et usages stratégiques du complot dans le discours politique.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Développer un esprit critique</strong> - outils pratiques pour évaluer l'information, résister aux biais cognitifs et naviguer dans l'infosphère contemporaine.</span></li>
           </ul>
         </div>
       </div>
@@ -1380,12 +1733,12 @@
           </p>
           <div style="font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;">6 points clés du cours</div>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 7px;">
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Comprendre la rhétorique comme outil d'influence</strong> — présentation de la rhétorique comme l'art de convaincre et d'influencer un public à travers le langage.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Définir et maîtriser le message</strong> — un discours repose toujours sur un message central, qui peut être explicite, implicite ou interprété différemment selon le public.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Adapter le discours au public et au contexte</strong> — analyser son audience (attentes, connaissances, résistances) pour adapter ses arguments et maximiser leur impact.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Construire une argumentation structurée</strong> — organiser ses idées, hiérarchiser ses arguments et anticiper les objections.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Utiliser les outils stylistiques pour marquer le discours</strong> — exemples, métaphores, comparaisons, répétitions… pour rendre un discours plus clair et plus mémorable.</span></li>
-            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Analyser les biais et les procédés fallacieux</strong> — développer un regard critique en identifiant les sophismes et les manipulations possibles dans les discours.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Comprendre la rhétorique comme outil d'influence</strong> - présentation de la rhétorique comme l'art de convaincre et d'influencer un public à travers le langage.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Définir et maîtriser le message</strong> - un discours repose toujours sur un message central, qui peut être explicite, implicite ou interprété différemment selon le public.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Adapter le discours au public et au contexte</strong> - analyser son audience (attentes, connaissances, résistances) pour adapter ses arguments et maximiser leur impact.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Construire une argumentation structurée</strong> - organiser ses idées, hiérarchiser ses arguments et anticiper les objections.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Utiliser les outils stylistiques pour marquer le discours</strong> - exemples, métaphores, comparaisons, répétitions… pour rendre un discours plus clair et plus mémorable.</span></li>
+            <li style="display: flex; gap: 10px; font-size: 13px; color: var(--ink-soft); line-height: 1.5;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 1px;">→</span><span><strong style="color: var(--ink); font-weight: 500;">Analyser les biais et les procédés fallacieux</strong> - développer un regard critique en identifiant les sophismes et les manipulations possibles dans les discours.</span></li>
           </ul>
         </div>
       </div>
@@ -1440,18 +1793,18 @@
         <div class="award-badge">&#127942;&ensp;Prix Voices Award &mdash; Zagreb, Croatie, 2025 &mdash; décerné pour le projet Self Data</div>
       </div>
       <div class="project-img-wrap">
-        <img class="project-img" src="https://antoninatger.com/wp-content/uploads/2023/12/college-balzac-self-data.png" alt="Self Data — Collège Balzac" loading="lazy">
+        <img class="project-img" src="https://antoninatger.com/wp-content/uploads/2023/12/college-balzac-self-data.png" alt="Self Data - Collège Balzac" loading="lazy">
       </div>
     </div>
     <div class="award-photos">
       <figure onclick="openLightbox(11)" style="cursor: zoom-in;">
-        <img src="https://antoninatger.com/wp-content/uploads/2025/03/img-20250228-wa0008-edited.jpg" alt="Voices Award — Zagreb 2025" loading="lazy">
+        <img src="https://antoninatger.com/wp-content/uploads/2025/03/img-20250228-wa0008-edited.jpg" alt="Voices Award - Zagreb 2025" loading="lazy">
       </figure>
       <figure onclick="openLightbox(12)" style="cursor: zoom-in;">
-        <img src="https://antoninatger.com/wp-content/uploads/2025/03/signal-2025-03-05-205515-edited.jpeg" alt="Voices Award — Zagreb 2025" loading="lazy">
+        <img src="https://antoninatger.com/wp-content/uploads/2025/03/signal-2025-03-05-205515-edited.jpeg" alt="Voices Award - Zagreb 2025" loading="lazy">
       </figure>
       <figure onclick="openLightbox(13)" style="cursor: zoom-in;">
-        <img src="https://antoninatger.com/wp-content/uploads/2025/03/img-20250301-wa0005-edited-1.jpg" alt="Voices Award — Zagreb 2025" loading="lazy">
+        <img src="https://antoninatger.com/wp-content/uploads/2025/03/img-20250301-wa0005-edited-1.jpg" alt="Voices Award - Zagreb 2025" loading="lazy">
       </figure>
     </div>
   </div>
@@ -1465,34 +1818,34 @@
     <div class="project-inner">
       <div class="project-text">
         <div class="project-tag">Parcours · 6 séances · CM1–CM2 · 2025–2026</div>
-        <div class="project-title"><em>Fake News &amp; Esprit Critique</em><br>ALAE Georges Dagneaux — Léo Lagrange, Perpignan</div>
-        <div class="project-desc">Un parcours complet de 6 séances progressives, conçu et animé pour des élèves de CM1–CM2. Chaque séance s'appuie sur des activités interactives — quiz, mini-jeux, illusions d'optique, recherche inversée d'image — pour construire, pas à pas, les réflexes de l'esprit critique.</div>
+        <div class="project-title"><em>Fake News &amp; Esprit Critique</em><br>ALAE Georges Dagneaux - Léo Lagrange, Perpignan</div>
+        <div class="project-desc">Un parcours complet de 6 séances progressives, conçu et animé pour des élèves de CM1–CM2. Chaque séance s'appuie sur des activités interactives - quiz, mini-jeux, illusions d'optique, recherche inversée d'image - pour construire, pas à pas, les réflexes de l'esprit critique.</div>
 
         <div style="margin-top: 22px; display: flex; flex-direction: column; gap: 8px;">
           <div style="font-size: 9px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px;">Les 6 séances</div>
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink-soft);line-height:1.55;">
             <span style="color:var(--accent);font-weight:700;min-width:20px;">①</span>
-            <span><strong style="color:var(--ink);font-weight:500;">C'est quoi, une Fake News ?</strong> — Distinguer faits et opinions ; quiz Vrai/Faux.</span>
+            <span><strong style="color:var(--ink);font-weight:500;">C'est quoi, une Fake News ?</strong> - Distinguer faits et opinions ; quiz Vrai/Faux.</span>
           </div>
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink-soft);line-height:1.55;">
             <span style="color:var(--accent);font-weight:700;min-width:20px;">②</span>
-            <span><strong style="color:var(--ink);font-weight:500;">L'effet de cadrage</strong> — Une même réalité peut être présentée de façon trompeuse sans mentir.</span>
+            <span><strong style="color:var(--ink);font-weight:500;">L'effet de cadrage</strong> - Une même réalité peut être présentée de façon trompeuse sans mentir.</span>
           </div>
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink-soft);line-height:1.55;">
             <span style="color:var(--accent);font-weight:700;min-width:20px;">③</span>
-            <span><strong style="color:var(--ink);font-weight:500;">Peut-on faire confiance à son cerveau ?</strong> — Illusions d'optique, paréidolie, système intuitif vs analytique.</span>
+            <span><strong style="color:var(--ink);font-weight:500;">Peut-on faire confiance à son cerveau ?</strong> - Illusions d'optique, paréidolie, système intuitif vs analytique.</span>
           </div>
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink-soft);line-height:1.55;">
             <span style="color:var(--accent);font-weight:700;min-width:20px;">④</span>
-            <span><strong style="color:var(--ink);font-weight:500;">Comment vérifier une image ?</strong> — Recherche inversée d'image, images générées par IA.</span>
+            <span><strong style="color:var(--ink);font-weight:500;">Comment vérifier une image ?</strong> - Recherche inversée d'image, images générées par IA.</span>
           </div>
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink-soft);line-height:1.55;">
             <span style="color:var(--accent);font-weight:700;min-width:20px;">⑤</span>
-            <span><strong style="color:var(--ink);font-weight:500;">Les biais cognitifs</strong> — Biais de popularité, émotionnel et de confirmation.</span>
+            <span><strong style="color:var(--ink);font-weight:500;">Les biais cognitifs</strong> - Biais de popularité, émotionnel et de confirmation.</span>
           </div>
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink-soft);line-height:1.55;">
             <span style="color:var(--accent);font-weight:700;min-width:20px;">⑥</span>
-            <span><strong style="color:var(--ink);font-weight:500;">Enquête : je mets en pratique !</strong> — Mini-jeu « Conversation smartphone » : les élèves résolvent une vraie enquête en mobilisant tous les acquis du parcours.</span>
+            <span><strong style="color:var(--ink);font-weight:500;">Enquête : je mets en pratique !</strong> - Mini-jeu « Conversation smartphone » : les élèves résolvent une vraie enquête en mobilisant tous les acquis du parcours.</span>
           </div>
         </div>
       </div>
@@ -1500,7 +1853,7 @@
         <img
           class="project-img"
           src="https://antoninatger.com/wp-content/uploads/2026/04/flou-1776598922318.png"
-          alt="ALAE Georges Dagneaux — Parcours Fake News CM1-CM2"
+          alt="ALAE Georges Dagneaux - Parcours Fake News CM1-CM2"
           loading="lazy">
       </div>
     </div>
@@ -1589,9 +1942,9 @@
     { src: 'https://antoninatger.com/wp-content/uploads/2023/11/3-2-831621556-e1700956034704.jpg', credit: '' },
     { src: 'https://antoninatger.com/wp-content/uploads/2023/11/2-450215437-e1700955923614.jpg', credit: '' },
     { src: 'https://antoninatger.com/wp-content/uploads/2023/08/1-college-jean-moulin-trevoux-3.jpg', credit: '© Guillaume Atger' },
-    { src: 'https://antoninatger.com/wp-content/uploads/2025/03/img-20250228-wa0008-edited.jpg', credit: 'Voices Award — Zagreb, Croatie, 2025' },
-    { src: 'https://antoninatger.com/wp-content/uploads/2025/03/signal-2025-03-05-205515-edited.jpeg', credit: 'Voices Award — Zagreb, Croatie, 2025' },
-    { src: 'https://antoninatger.com/wp-content/uploads/2025/03/img-20250301-wa0005-edited-1.jpg', credit: 'Voices Award — Zagreb, Croatie, 2025' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2025/03/img-20250228-wa0008-edited.jpg', credit: 'Voices Award - Zagreb, Croatie, 2025' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2025/03/signal-2025-03-05-205515-edited.jpeg', credit: 'Voices Award - Zagreb, Croatie, 2025' },
+    { src: 'https://antoninatger.com/wp-content/uploads/2025/03/img-20250301-wa0005-edited-1.jpg', credit: 'Voices Award - Zagreb, Croatie, 2025' },
   ];
   let lbIndex = 0;
 
