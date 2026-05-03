@@ -3,7 +3,11 @@
     "allow": [
       "WebSearch",
       "Bash(python *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\ASUS\\\\Documents\\\\Web apps\\\\Wordpress\\\\Bibliographie\" -Recurse -Include \"*.php\", \"*.html\", \"*.js\", \"*.json\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(grep -E \"\\\\.\\(html|php|js|json\\)$\")",
+      "WebFetch(domain:www.genderedcoalition.net)"
     ]
   }
 }
