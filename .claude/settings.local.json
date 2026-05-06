@@ -7,7 +7,12 @@
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\ASUS\\\\Documents\\\\Web apps\\\\Wordpress\\\\Bibliographie\" -Recurse -Include \"*.php\", \"*.html\", \"*.js\", \"*.json\")",
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(grep -E \"\\\\.\\(html|php|js|json\\)$\")",
-      "WebFetch(domain:www.genderedcoalition.net)"
+      "WebFetch(domain:www.genderedcoalition.net)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\ASUS\\\\Documents\\\\Web apps\\\\Wordpress\\\\Bibliographie\" -Recurse)",
+      "Bash(Select-Object -Property FullName, PSIsContainer)",
+      "Bash(Sort-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\ASUS\\\\Documents\\\\Web apps\\\\Wordpress\\\\Bibliographie\" | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\ASUS\\\\Documents\\\\Web apps\\\\Wordpress\\\\Bibliographie\" -Recurse -File | Select-Object @{Name=\"Path\";Expression={$_.FullName}}, @{Name=\"Type\";Expression={$_.Extension}})"
     ]
   }
 }
