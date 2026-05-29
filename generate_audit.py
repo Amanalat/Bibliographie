@@ -276,7 +276,7 @@ action_para(doc, "Ajouter un encart contact en bas de chaque fiche d'interventio
 # PROBLEME 8
 # ═══════════════════════════════════════════════════════
 section_header(doc, "7", "Le Fakemetre est une coquille vide")
-body_para(doc, "La section Fakemetre (bas de index.html) a un titre, un sous-titre, une description -- mais aucun lien, aucun bouton, aucune demo accessible. Elle ressemble a du contenu inacheve mis en ligne.")
+body_para(doc, "La section Fakemetre (bas de publication.html) a un titre, un sous-titre, une description -- mais aucun lien, aucun bouton, aucune demo accessible. Elle ressemble a du contenu inacheve mis en ligne.")
 body_para(doc, "Or c'est exactement le type d'outil qui peut convaincre un enseignant ou un bibliothecaire : il peut l'essayer, le montrer a ses eleves, et realiser la valeur de votre approche avant meme de vous contacter.")
 label_para(doc, "A corriger")
 action_para(doc, "Si l'outil est pret : ajouter un bouton 'Tester le Fakemetre' ou l'integrer directement.")
