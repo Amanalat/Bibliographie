@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV — Antonin Atger</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #b5341c;
+    --ink: #1a1510;
+    --ink-soft: #5a5248;
+    --border: #ddd9d2;
+    --bg-alt: #f7f5f1;
+    --bg-dark: #111;
+  }
+
+  body {
+    font-family: 'Source Sans 3', Georgia, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── Layout ── */
+  .cv-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+
+  /* ── Hero / En-tête ── */
+  .cv-hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 40px;
+    padding: 56px 0 36px;
+    border-bottom: 3px solid var(--ink);
+    margin-bottom: 52px;
+  }
+
+  .cv-hero-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .cv-hero-title {
+    font-size: 14px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+
+  .cv-hero-tagline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 520px;
+    line-height: 1.55;
+  }
+
+  .cv-hero-contact {
+    text-align: right;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+
+  .cv-hero-contact strong {
+    display: block;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .cv-hero-contact a { color: var(--ink-soft); }
+  .cv-hero-contact a:hover { color: var(--accent); text-decoration: underline; }
+
+  /* ── Section heading ── */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 52px 0 28px;
+  }
+
+  .section-head span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .section-head::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Résumé / Profil ── */
+  .profile p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.8;
+    max-width: 700px;
+  }
+
+  .profile p + p { margin-top: 14px; }
+
+  /* ── Compétences-clés pills ── */
+  .skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 22px;
+  }
+
+  .skill-pill {
+    background: var(--bg-dark);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+  }
+
+  .skill-pill.light {
+    background: var(--bg-alt);
+    color: var(--ink-soft);
+    border: 1px solid var(--border);
+  }
+
+  /* ── Entrée de CV générique ── */
+  .cv-entry {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0 28px;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0ede8;
+  }
+
+  .cv-entry:last-child { border-bottom: none; }
+
+  .cv-entry-year {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 13px;
+    font-style: italic;
+    color: #aaa;
+    padding-top: 3px;
+    text-align: right;
+  }
+
+  .cv-entry-body {}
+
+  .cv-entry-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 2px;
+  }
+
+  .cv-entry-sub {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .cv-entry-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  .cv-entry-desc + .cv-entry-desc { margin-top: 8px; }
+
+  /* ── Tags en ligne ── */
+  .tag-inline {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    background: #ebe7df;
+    color: var(--ink-soft);
+    padding: 2px 8px;
+    margin-right: 4px;
+    margin-top: 6px;
+  }
+
+  .tag-inline.accent {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* ── Bloc "livre" ── */
+  .book-entry {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0ede8;
+  }
+
+  .book-entry:last-child { border-bottom: none; }
+
+  .book-cover {
+    width: 80px;
+    background: var(--bg-alt);
+    aspect-ratio: 2/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #bbb;
+    text-align: center;
+  }
+
+  .book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 3px 16px rgba(0,0,0,.18);
+  }
+
+  .book-meta .publisher {
+    font-size: 11px;
+    color: #aaa;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .book-meta h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .book-meta p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* ── Distinction/prix ── */
+  .award-entry {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0ede8;
+  }
+
+  .award-entry:last-child { border-bottom: none; }
+
+  .award-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 36px;
+    text-align: center;
+    padding-top: 2px;
+  }
+
+  .award-body {}
+
+  .award-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .award-context {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* ── Grille interventions ── */
+  .intv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .intv-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    padding: 18px 22px;
+  }
+
+  .intv-card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .intv-card p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* ── Stats row ── */
+  .stats-row {
+    display: flex;
+    gap: 0;
+    background: var(--bg-dark);
+    margin: 28px 0 0;
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 28px 24px;
+    text-align: center;
+    border-right: 1px solid #2a2a2a;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: #888;
+  }
+
+  /* ── Media chips ── */
+  .media-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .media-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    background: var(--bg-alt);
+  }
+
+  .media-chip .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── Citation témoignage ── */
+  .quote-block {
+    background: var(--bg-alt);
+    border-left: 4px solid var(--accent);
+    padding: 22px 28px;
+    margin-top: 28px;
+  }
+
+  .quote-block p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  .quote-block .qsource {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 10px;
+  }
+
+  /* ── Print / responsive ── */
+  @media (max-width: 600px) {
+    .cv-hero { grid-template-columns: 1fr; }
+    .cv-hero-contact { text-align: left; margin-top: 12px; }
+    .cv-entry { grid-template-columns: 70px 1fr; gap: 0 16px; }
+    .intv-grid { grid-template-columns: 1fr; }
+    .stats-row { flex-direction: column; }
+    .stat-item { border-right: none; border-bottom: 1px solid #2a2a2a; }
+  }
+
+  @media print {
+    body { font-size: 11pt; }
+    .cv-hero-name { font-size: 28pt; }
+    .section-head { margin: 32px 0 18px; }
+    .stats-row { background: #eee; }
+    .stat-num { color: var(--ink); }
+    .stat-label { color: var(--ink-soft); }
+    .skill-pill { background: #ddd; color: var(--ink); }
+  }
+</style>
+</head>
+<body>
+
+<div class="cv-wrap">
+
+  <!-- ══════════ EN-TÊTE ══════════ -->
+  <header class="cv-hero">
+    <div>
+      <div class="cv-hero-title">Curriculum Vitæ</div>
+      <h1 class="cv-hero-name">Antonin Atger</h1>
+      <p class="cv-hero-tagline">Auteur de science-fiction · Chercheur en psychologie &amp; complotisme · Conférencier et formateur en éducation aux médias</p>
+    </div>
+    <div class="cv-hero-contact">
+      <strong>Contact</strong>
+      <a href="mailto:amanalat@hotmail.fr">amanalat@hotmail.fr</a><br>
+      <a href="https://antoninatger.com" target="_blank">antoninatger.com</a><br>
+      Lyon, France
+    </div>
+  </header>
+
+  <!-- ══════════ PROFIL ══════════ -->
+  <div class="section-head"><span>Profil</span></div>
+
+  <div class="profile">
+    <p>Auteur de la trilogie <em>Interfeel</em> (Pocket Jeunesse) et doctorant en psychologie, je travaille à l'intersection de la littérature, de la recherche et de la médiation culturelle. Mes travaux portent sur les liens entre psychologie, théories du complot et stratégie politique, nourris d'un premier master en sciences politiques et d'un second en psychologie.</p>
+    <p>En parallèle de l'écriture, j'interviens depuis plusieurs années dans les établissements scolaires, les médiathèques et auprès de professionnels pour vulgariser les mécanismes de la désinformation, développer l'esprit critique et former à la lecture active des médias. À ce jour, 122 structures m'ont accueilli partout en France.</p>
+    <p>Mes travaux m'ont conduit à être auditionné par l'Assemblée Nationale, à intervenir dans un TEDx (2024), à recevoir le prix européen Voices 2025 (Zagreb) et à contribuer à des programmes internationaux de lutte contre la manipulation de l'information.</p>
+  </div>
+
+  <div class="skills-row">
+    <span class="skill-pill">Désinformation &amp; fact-checking</span>
+    <span class="skill-pill">Complotisme &amp; psychologie sociale</span>
+    <span class="skill-pill">Éducation aux médias (EMI)</span>
+    <span class="skill-pill">Écriture de fiction</span>
+    <span class="skill-pill light">Sciences cognitives &amp; biais</span>
+    <span class="skill-pill light">Rhétorique &amp; argumentation</span>
+    <span class="skill-pill light">Vulgarisation scientifique</span>
+    <span class="skill-pill light">Formation professionnelle</span>
+  </div>
+
+  <!-- ══════════ FORMATION ══════════ -->
+  <div class="section-head"><span>Formation</span></div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">En cours</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Thèse de doctorat — Psychologie</div>
+      <div class="cv-entry-sub">Spécialisation : Complotisme, biais cognitifs &amp; stratégie politique</div>
+      <p class="cv-entry-desc">La thèse explore les liens multiples et parfois dangereux entre théorie du complot et stratégie politique. Elle s'appuie sur les acquis croisés du cursus en sciences politiques et du master en psychologie, engagé suite à la crise du Covid-19 et au déferlement de désinformations complotistes sur les réseaux sociaux.</p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">Master 2</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Master — Psychologie</div>
+      <div class="cv-entry-sub">Reprise d'études — sciences cognitives, psychologie sociale</div>
+      <p class="cv-entry-desc">Deuxième master engagé après la crise du Covid-19 pour comprendre les mécanismes psychologiques à l'origine de la croyance complotiste et de la réceptivité à la désinformation en ligne.</p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">Master 1</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Master — Sciences Politiques</div>
+      <div class="cv-entry-sub">Cursus initial — sciences politiques, droit, communication</div>
+      <p class="cv-entry-desc">Formation initiale en sciences politiques, complétée par une expérience à l'University of Victoria (Vancouver, Canada) — communication académique au colloque international <em>Le Rythme, le Mot et l'Image</em> (2009).</p>
+    </div>
+  </div>
+
+  <!-- ══════════ PUBLICATIONS LITTÉRAIRES ══════════ -->
+  <div class="section-head"><span>Publications littéraires</span></div>
+
+  <!-- Interfeel 1 -->
+  <div class="book-entry">
+    <div class="book-cover">
+      <img src="https://antoninatger.com/wp-content/uploads/2018/12/couv_interfeel_rc3a9duite.jpg" alt="Couverture Interfeel Tome 1">
+    </div>
+    <div class="book-meta">
+      <p class="publisher">Pocket Jeunesse · 2018 · Roman d'anticipation</p>
+      <h3>Interfeel</h3>
+      <p>Nathan et ses amis sont en permanence connectés à Interfeel, un réseau social qui permet de partager ses émotions. Un événement tragique va bouleverser Nathan. Fasciné par Élizabeth, une « sans-Réseau » vivant en marge de la société, il voit toutes ses certitudes vaciller.</p>
+      <p>Né d'un concours <em>Welovewords</em> remporté en 2012. Deux ans d'écriture, six mois de relecture.</p>
+      <span class="tag-inline accent">Prix CLA Books Awards 2019</span>
+      <span class="tag-inline accent">Prix Chimère 2019</span>
+      <span class="tag-inline">+20 chroniques de lecteurs</span>
+    </div>
+  </div>
+
+  <!-- Interfeel 2 -->
+  <div class="book-entry">
+    <div class="book-cover">
+      <img src="https://antoninatger.com/wp-content/uploads/2026/03/interfeel-2.jpg" alt="Couverture Interfeel Tome 2">
+    </div>
+    <div class="book-meta">
+      <p class="publisher">Pocket Jeunesse · Suite · Roman d'anticipation</p>
+      <h3>Interfeel – Tome 2 : Les Résistants</h3>
+      <p>Après la rupture d'Interfeel, l'équipe « Résistance » est dispersée. Adila et Nadem se voient confier une mission : traverser le monde pour retrouver le créateur d'Interfeel, seule personne capable de stopper la machination du Tatoueur.</p>
+    </div>
+  </div>
+
+  <!-- Interfeel 3 -->
+  <div class="book-entry">
+    <div class="book-cover">
+      <img src="https://antoninatger.com/wp-content/uploads/2026/03/interfeel-3.jpg" alt="Couverture Interfeel Tome 3">
+    </div>
+    <div class="book-meta">
+      <p class="publisher">Pocket Jeunesse · Suite · Roman d'anticipation</p>
+      <h3>Interfeel – Tome 3 : L'Odyssée</h3>
+      <p>Le sort de tous est désormais entre les mains de quelques-uns. Hanek, le professeur, Adila et Nadir doivent s'allier contre la menace grandissante du Tatoueur. Une seule personne peut l'arrêter : Nathan Ethanin — qui a disparu depuis six mois.</p>
+    </div>
+  </div>
+
+  <!-- Postface -->
+  <div class="book-entry">
+    <div class="book-cover">
+      <img src="https://antoninatger.com/wp-content/uploads/2026/04/614DJAQ-kGL._SY522_.jpg" alt="Comprendre l'emprise">
+    </div>
+    <div class="book-meta">
+      <p class="publisher">Postface · Ouvrage de Benoît Judde &amp; Amélie Dumaine</p>
+      <h3>Comprendre l'emprise</h3>
+      <p>Écriture de la postface de cet ouvrage consacré aux mécanismes psychologiques de l'emprise. La postface établit les liens entre emprise, désinformation et complotisme : les mêmes mécanismes cognitifs qui rendent une personne vulnérable à l'influence d'un groupe la rendent également perméable aux récits complotistes.</p>
+    </div>
+  </div>
+
+  <!-- ══════════ PARCOURS LITTÉRAIRE ANTÉRIEUR ══════════ -->
+  <div class="section-head"><span>Parcours littéraire antérieur</span></div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2012</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Sélection ACLA</div>
+      <div class="cv-entry-sub">Nouvelle — Association Culture Loisir Antibes</div>
+      <p class="cv-entry-desc">Sélectionné pour publication dans le recueil de l'ACLA sur un sujet imposé particulièrement exigeant.</p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2012</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title"><em>L'Indifférence</em></div>
+      <div class="cv-entry-sub">Nouvelle — Sorbonne, Master Édition · Salon du Livre de Paris</div>
+      <p class="cv-entry-desc">Sélectionné parmi les candidatures à cet appel à textes sur le thème du fait divers. Présence au Salon du Livre de Paris.</p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2009</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Colloque — <em>Le Rythme, le Mot et l'Image</em></div>
+      <div class="cv-entry-sub">Communication académique — University of Victoria, Vancouver</div>
+      <p class="cv-entry-desc">Communication sur les corrélations entre réalité, livre et cinéma à travers <em>Entre les Murs</em> (François Bégaudeau / Laurent Cantet, Palme d'Or Cannes 2008). Un échange à distance avec Laurent Cantet lui-même a pu être établi dans le cadre de ce travail.</p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2009</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title"><em>Les Étoiles</em> — Recueil Quai du Polar</div>
+      <div class="cv-entry-sub">Recueil rassemblant les lauréats des quatre dernières éditions</div>
+      <p class="cv-entry-desc">Republication de la nouvelle primée en 2008 dans le recueil du festival.</p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2008</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title"><em>Meyzieu, quand la ville danse</em></div>
+      <div class="cv-entry-sub">Ouvrage collectif — en collaboration avec le photographe Jean-François Marin</div>
+      <p class="cv-entry-desc">Plus d'une centaine d'entretiens menés auprès des habitants, tissés en une trame narrative reliant toutes les voix. L'ouvrage s'est vendu à plus de <strong>2 000 exemplaires</strong>. Une partie du travail réalisée depuis le Canada, où l'auteur résidait pour une année.</p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2008</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Lauréat du Quai du Polar — <em>Les Étoiles</em></div>
+      <div class="cv-entry-sub">Concours de nouvelle — Lyon</div>
+      <p class="cv-entry-desc">Première participation à un concours littéraire, premier prix. Thème imposé : « Rendez-vous sur les quais ».</p>
+      <span class="tag-inline accent">1er prix</span>
+    </div>
+  </div>
+
+  <!-- ══════════ INTERVENTIONS ══════════ -->
+  <div class="section-head"><span>Interventions &amp; conférences</span></div>
+
+  <div class="intv-grid">
+    <div class="intv-card">
+      <div class="intv-card-title">Fake News et Esprit Critique</div>
+      <p>Mécanismes cognitifs, biais, illusions d'optique — pourquoi les fausses informations nous séduisent et comment s'en prémunir.</p>
+      <span class="tag-inline">Primaire · Collège · Lycée</span>
+    </div>
+    <div class="intv-card">
+      <div class="intv-card-title">Désinformation, au-delà de la Fake News</div>
+      <p>Décontextualisation, biais cognitifs, propagande algorithmique et stratégies politiques de manipulation.</p>
+      <span class="tag-inline">Collège · Lycée · Médiathèque</span>
+    </div>
+    <div class="intv-card">
+      <div class="intv-card-title">Rhétorique et Esprit Critique</div>
+      <p>Techniques rhétoriques, outils de l'argumentation, déconstruction du discours, identification des sophismes.</p>
+      <span class="tag-inline">Lycée · Enseignement supérieur</span>
+    </div>
+    <div class="intv-card">
+      <div class="intv-card-title">Ateliers d'écriture</div>
+      <p>Ateliers créatifs autour de la nouvelle et de la science-fiction pour explorer les enjeux du futur numérique.</p>
+      <span class="tag-inline">CM1 · CM2 · Collège · Lycée</span>
+    </div>
+    <div class="intv-card">
+      <div class="intv-card-title">Le piège des influenceurs</div>
+      <p>Mécanismes d'influence sur les réseaux sociaux, monétisation de l'audience et vecteurs de désinformation.</p>
+      <span class="tag-inline">Collège · Lycée</span>
+    </div>
+    <div class="intv-card">
+      <div class="intv-card-title">La magie des histoires</div>
+      <p>Storytelling au service de la désinformation — comment le récit est utilisé pour convaincre ou manipuler.</p>
+      <span class="tag-inline">Lycée · Grand public</span>
+    </div>
+    <div class="intv-card">
+      <div class="intv-card-title">Formation contre l'arnaque en ligne</div>
+      <p>Phishing, faux profils, escroqueries aux sentiments, fraudes à la livraison — signaux d'alerte et bons réflexes.</p>
+      <span class="tag-inline">Grand public · Seniors</span>
+    </div>
+    <div class="intv-card">
+      <div class="intv-card-title">Formation enseignants</div>
+      <p>Intégrer l'EMI en classe, ressources pédagogiques, co-construction de séquences adaptées aux élèves.</p>
+      <span class="tag-inline">Formation initiale &amp; continue</span>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-num">86</div>
+      <div class="stat-label">Établissements scolaires</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">36</div>
+      <div class="stat-label">Médiathèques &amp; bibliothèques</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">122</div>
+      <div class="stat-label">Structures en France</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">CM1</div>
+      <div class="stat-label">Niveau minimum (jusqu'au lycée)</div>
+    </div>
+  </div>
+
+  <!-- ══════════ DISTINCTIONS ══════════ -->
+  <div class="section-head"><span>Distinctions &amp; récompenses</span></div>
+
+  <div class="award-entry">
+    <div class="award-icon">🏆</div>
+    <div class="award-body">
+      <div class="award-title">Prix « Media Education Relevance » — GenderED Coalition Hackathon</div>
+      <p class="award-context">Italie · Avril 2026 — Hackathon de 24h réunissant 8 équipes issues de 4 pays, mobilisées pour réduire la désinformation liée au genre. Prix décerné au projet co-conçu détournant des affiches de films cultes pour aborder les thématiques de genre avec humour.</p>
+    </div>
+  </div>
+
+  <div class="award-entry">
+    <div class="award-icon">🥇</div>
+    <div class="award-body">
+      <div class="award-title">Prix européen Voices — catégorie « Data Wellbeing »</div>
+      <p class="award-context">Festival VOICES · Zagreb, Croatie · Mars 2025 — Récompense le projet <strong>Self Data</strong> (Classes Culturelles Numériques, Métropole de Lyon / Erasme / Réseau Canopé) : une histoire de SF écrite avec des classes sur la protection des données personnelles, situant une résistante lyonnaise de 1942 face aux enjeux numériques d'aujourd'hui.</p>
+    </div>
+  </div>
+
+  <div class="award-entry">
+    <div class="award-icon">🏆</div>
+    <div class="award-body">
+      <div class="award-title">CLA Books Awards 2019</div>
+      <p class="award-context">Pour la trilogie Interfeel · Éditions Pocket Jeunesse</p>
+    </div>
+  </div>
+
+  <div class="award-entry">
+    <div class="award-icon">🏆</div>
+    <div class="award-body">
+      <div class="award-title">Prix Chimère 2019</div>
+      <p class="award-context">Pour la trilogie Interfeel · Éditions Pocket Jeunesse</p>
+    </div>
+  </div>
+
+  <div class="award-entry">
+    <div class="award-icon">🥇</div>
+    <div class="award-body">
+      <div class="award-title">Lauréat du Quai du Polar</div>
+      <p class="award-context">Lyon · 2008 — Première participation à un concours littéraire, premier prix. Nouvelle : <em>Les Étoiles</em>.</p>
+    </div>
+  </div>
+
+  <!-- ══════════ ÉVÉNEMENTS NOTABLES ══════════ -->
+  <div class="section-head"><span>Événements &amp; prises de parole notables</span></div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2024</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">TEDx — « Garder espoir sur les réseaux sociaux »</div>
+      <div class="cv-entry-sub">Conférence TEDx</div>
+      <p class="cv-entry-desc">Intervention sur la désinformation, les réseaux sociaux et la possibilité de cultiver un regard critique tout en restant optimiste face aux défis de l'ère numérique.</p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2024–2025</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Audition parlementaire — Assemblée Nationale</div>
+      <div class="cv-entry-sub">Impact des médias sociaux sur les jeunes</div>
+      <p class="cv-entry-desc">Auditionné par l'Assemblée Nationale pour apporter un éclairage sur l'impact des réseaux sociaux sur les plus jeunes, en tant qu'expert de la désinformation et de l'éducation aux médias.</p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2026</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Nuit Zététique — La Tronche en Biais</div>
+      <div class="cv-entry-sub">Tables rondes · Esprit critique, science &amp; politique</div>
+      <p class="cv-entry-desc">Invité à la Nuit Zététique 2026 organisée par La Tronche en Biais pour intervenir sur deux tables rondes : <em>Science et politique — indépendance ou instrumentalisation ?</em> et <em>Humour, satire, fiction : des armes au service de la science ?</em></p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2025</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Congrès Prisme — ASTEC</div>
+      <div class="cv-entry-sub">Lutte contre l'emprise sectaire · 13 décembre 2025</div>
+      <p class="cv-entry-desc">Participation au congrès organisé par l'Association pour la Science et la Transmission de l'Esprit Critique, animé par Thomas C. Durand et Vled Tapas (La Tronche en Biais). Table ronde n°2. Présence de scientifiques et de rescapés de dérives sectaires, avec traduction LSF intégrale.</p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2023</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Lycée Français International de Hong Kong</div>
+      <div class="cv-entry-sub">Ateliers pédagogiques — campus BPR &amp; TKO · Septembre 2023</div>
+      <p class="cv-entry-desc">Interventions en 4ème et 3ème : décryptage des fausses informations et biais cognitifs, et ateliers d'écriture créative autour de la dystopie <em>Interfeel</em>.</p>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2009</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">University of Victoria — Vancouver, Canada</div>
+      <div class="cv-entry-sub">Communication académique internationale</div>
+      <p class="cv-entry-desc">Communication au colloque <em>Le Rythme, le Mot et l'Image</em> sur les corrélations entre réalité, livre et cinéma à travers <em>Entre les Murs</em>. Échange à distance avec le réalisateur Laurent Cantet (Palme d'Or Cannes 2008).</p>
+    </div>
+  </div>
+
+  <!-- ══════════ COUVERTURE MÉDIATIQUE ══════════ -->
+  <div class="section-head"><span>Couverture médiatique</span></div>
+
+  <div class="media-list">
+    <span class="media-chip"><span class="dot"></span>France 3 Auvergne-Rhône-Alpes</span>
+    <span class="media-chip"><span class="dot"></span>France 3 Nouvelle-Aquitaine</span>
+    <span class="media-chip"><span class="dot"></span>France Info Junior</span>
+    <span class="media-chip"><span class="dot"></span>Fun Radio</span>
+    <span class="media-chip"><span class="dot"></span>Tribune de Lyon</span>
+    <span class="media-chip"><span class="dot"></span>Le Progrès</span>
+    <span class="media-chip"><span class="dot"></span>Le Dauphiné Libéré</span>
+    <span class="media-chip"><span class="dot"></span>La Montagne</span>
+    <span class="media-chip"><span class="dot"></span>Le Parisien</span>
+    <span class="media-chip"><span class="dot"></span>Var Matin</span>
+    <span class="media-chip"><span class="dot"></span>Journal du Geek</span>
+    <span class="media-chip"><span class="dot"></span>Artistik Rezo</span>
+    <span class="media-chip"><span class="dot"></span>Biblioteca Magazine</span>
+    <span class="media-chip"><span class="dot"></span>Mon Quotidien</span>
+    <span class="media-chip"><span class="dot"></span>Radio Royans</span>
+    <span class="media-chip"><span class="dot"></span>Echosciences Grenoble</span>
+    <span class="media-chip"><span class="dot"></span>Réussir Bovins Viande</span>
+    <span class="media-chip"><span class="dot"></span>Podcast Debatology</span>
+    <span class="media-chip"><span class="dot"></span>Podcast Projet Utopia</span>
+    <span class="media-chip"><span class="dot"></span>Podcast Les Voix de la Tech</span>
+    <span class="media-chip"><span class="dot"></span>YouTube Dave Sheik</span>
+    <span class="media-chip"><span class="dot"></span>Babelio</span>
+    <span class="media-chip"><span class="dot"></span>RadioEducation.org</span>
+    <span class="media-chip"><span class="dot"></span>RageBait</span>
+  </div>
+
+  <div class="quote-block">
+    <p>« Mon plus gros problème avec l'IA générative, ce n'est pas qu'on peut créer des fausses vidéos, c'est que des gens vont commencer à douter des vraies. »</p>
+    <p class="qsource">— Antonin Atger, L'Effet Pelapelaka · Mai 2026</p>
+  </div>
+
+  <!-- ══════════ PROJETS COLLABORATIFS ══════════ -->
+  <div class="section-head"><span>Projets collaboratifs</span></div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2024–2025</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Self Data — Classes Culturelles Numériques</div>
+      <div class="cv-entry-sub">Métropole de Lyon · Erasme · Réseau Canopé · <strong>Prix Voices 2025</strong></div>
+      <p class="cv-entry-desc">Co-écriture avec plusieurs classes d'une histoire de science-fiction sur la protection des données personnelles : un téléphone portable envoyé en 1942 pour aider la résistante lyonnaise Alberte Bourde. Les élèves apprennent à protéger leurs données en résolvant des énigmes et en créant un projet artistique de fin d'année.</p>
+      <p class="cv-entry-desc">Ce travail a été récompensé en mars 2025 par le prix européen Voices dans la catégorie « Data Wellbeing » à Zagreb, festival réunissant les acteurs européens du journalisme et de la lutte contre la manipulation de l'information.</p>
+      <span class="tag-inline accent">Prix Voices 2025</span>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">Avr. 2026</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">GenderED Coalition Hackathon</div>
+      <div class="cv-entry-sub">Italie · Lutte contre la désinformation de genre · <strong>Prix Media Education Relevance</strong></div>
+      <p class="cv-entry-desc">Invité par GenderED Coalition Project à participer à leur premier Hackathon international en Italie. 8 équipes issues de 4 pays, objectif : concevoir un projet informatique en 24 heures pour réduire la désinformation liée au genre. Notre équipe a proposé le détournement humoristique d'affiches de films cultes pour rendre ces thématiques accessibles.</p>
+      <span class="tag-inline accent">Prix Media Education Relevance</span>
+    </div>
+  </div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">2025</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Postface — <em>Comprendre l'emprise</em></div>
+      <div class="cv-entry-sub">Benoît Judde &amp; Amélie Dumaine</div>
+      <p class="cv-entry-desc">Contribution académique et littéraire à un ouvrage de référence sur les mécanismes psychologiques de l'emprise, établissant le pont entre psychologie de l'influence et vulnérabilité à la désinformation.</p>
+    </div>
+  </div>
+
+  <!-- ══════════ OUTIL PÉDAGOGIQUE ══════════ -->
+  <div class="section-head"><span>Outil pédagogique</span></div>
+
+  <div class="cv-entry">
+    <div class="cv-entry-year">Création</div>
+    <div class="cv-entry-body">
+      <div class="cv-entry-title">Le Fakemètre</div>
+      <div class="cv-entry-sub">Outil interactif d'évaluation de la fiabilité des informations</div>
+      <p class="cv-entry-desc">Un outil pédagogique interactif guidant les élèves pas à pas pour analyser une source, identifier les signaux d'alerte et situer une information sur une échelle de la désinformation. Conçu pour une utilisation autonome en classe ou en médiathèque.</p>
+    </div>
+  </div>
+
+</div><!-- /cv-wrap -->
+
+<style>
+  #back-to-top {
+    position: fixed; bottom: 32px; right: 32px; z-index: 999;
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid var(--border); background: #faf8f5;
+    color: var(--accent); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity .25s, transform .25s, background .15s, color .15s;
+    pointer-events: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,.10);
+  }
+  #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  #back-to-top:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+</style>
+
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
+  <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 10l5-5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<script>
+  window.addEventListener('scroll', function() {
+    document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 400);
+  });
+</script>
+
+</body>
+</html>
