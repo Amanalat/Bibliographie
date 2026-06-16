@@ -1,51 +1,16 @@
 # ───────────────────────────────────────────────
 #  .gitignore — site Antonin Atger
-#  But : ne versionner que les fichiers du site web
-#  (HTML + scripts), jamais les sources lourdes.
+#  Liste blanche : SEULES ces 4 pages sont versionnées
+#  et déployées. Tout le reste est ignoré (mais conservé
+#  sur le disque local).
 # ───────────────────────────────────────────────
 
-# ── Dossiers de travail (sources lourdes, hors site web) ──
-Esprit critique/
-Narration/
-Rhétorique/
-Les Parents Saint Thomas d'Aquin/
+# Tout ignorer par défaut...
+*
 
-# ── Fichiers lourds / sources (jamais publiés sur le site) ──
-*.pptx
-*.ppsx
-*.ppt
-*.mp4
-*.mov
-*.avi
-*.mkv
-*.zip
-*.rar
-*.7z
-*.xcf
-*.psd
-*.ai
-
-# ── Images locales (le site utilise des images hébergées en ligne) ──
-*.jpg
-*.jpeg
-*.png
-*.webp
-*.gif
-*.bmp
-*.tif
-*.tiff
-
-# ── Fichiers temporaires / extraits locaux ──
-_biblio_extract.txt
-_extract_docs.py
-A ajouter.txt
-A AJOUTER.pptx
-Fake news et questions environnementales - texte descriptif.txt
-
-# ── Config Claude Code ──
-.claude/
-
-# ── Système ──
-Thumbs.db
-desktop.ini
-.DS_Store
+# ...sauf le .gitignore et les 4 pages à déployer
+!.gitignore
+!collaborations.html
+!couverture-mediatique.html
+!interventions.html
+!publication.html
