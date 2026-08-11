@@ -16,7 +16,8 @@
       "WebFetch(domain:pelapelaka.com)",
       "WebFetch(domain:www.youtube.com)",
       "WebFetch(domain:antoninatger.com)",
-      "WebFetch(domain:www.fis.edu.hk)"
+      "WebFetch(domain:www.fis.edu.hk)",
+      "WebFetch(domain:www.afis.org)"
     ]
   }
 }
